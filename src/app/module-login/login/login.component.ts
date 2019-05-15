@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
       return;
      }
      //call to server login
-     // this.slogin.callLogin(this.form.value.username,this.form.value.password).subscribe(res=>{
-      this.slogin.callLogin("hi","hi").subscribe(res=>{
+      this.slogin.callLogin(this.form.value.username,this.form.value.password).subscribe(res=>{
+    //  this.slogin.callLogin("","hi").subscribe(res=>{
         alert(res);
       })
 

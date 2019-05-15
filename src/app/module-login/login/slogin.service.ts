@@ -9,14 +9,15 @@ export class SLoginService {
   constructor(private http:HttpClient) {
 
   }
-path:string = 'https://reqres.in//api/login';
+path:string = 'https://reqres.in/api/login';
 
   callLogin(user:string,password:string) : Observable<any>
   {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'my-auth-token'
+        'Authorization': 'my-auth-token',
+        'Access-Control-Allow-Origin':"*"
       })
     };
 
