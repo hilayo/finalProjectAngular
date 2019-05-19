@@ -9,33 +9,34 @@ import { SLoginService } from './slogin.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @Input() error: string | null;
+  @Output() submitEM = new EventEmitter();
+  form: FormGroup;
+
   ngOnInit(): void {
+    this.form = new FormGroup({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+        Validators.email,
+        Validators.pattern('^[a-zA-Z].*@.*\..+')
+      ]),
+      password: new FormControl('', [Validators.required, Validators.min(1)])
+    });
   }
- constructor(private slogin:SLoginService){
+  constructor(private slogin: SLoginService) { }
 
- }
-
-  form: FormGroup = new FormGroup ({
-   username: new FormControl('',[Validators.required, Validators.min(1),Validators.email]),
-    password: new FormControl('',[Validators.required, Validators.min(1)]),
-  });
 
   submit() {
-    if (this.form.invalid)
-     {
-      this.error='User or password are not valid';
+    if (this.form.invalid) {
+      this.error = 'User or password are not valid';
       return;
-     }
-     //call to server login
-      this.slogin.callLogin(this.form.value.username,this.form.value.password).subscribe(res=>{
-    //  this.slogin.callLogin("","hi").subscribe(res=>{
+    }
+    // call to server login
+    this.slogin
+      .callLogin(this.form.value.username, this.form.value.password)
+      .subscribe(res => {
         alert(res);
-      })
-
-
+      });
   }
-  @Input() error: string | null;
-
-  @Output() submitEM = new EventEmitter();
-
 }
