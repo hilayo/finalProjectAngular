@@ -13,11 +13,10 @@ import { UploadPictureComponent } from './upload-picture/upload-picture.componen
 import { ClosetComponent } from './closet/closet.component';
 import {LoginModule} from '../app/module-login/module-login.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomepageComponent,
     StartPageComponent,
     NavBarComponent,
@@ -31,7 +30,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     LoginModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule
+
 
 
   ],

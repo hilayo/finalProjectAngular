@@ -6,15 +6,18 @@ import { ClarityModule } from '@clr/angular';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { signUpComponent } from './signUp/signUp.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [signUpComponent,
+    LoginComponent
+  ],
   imports: [
     CommonModule,
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
-
     ClarityModule,
     MatInputModule,
     ReactiveFormsModule,
@@ -24,7 +27,6 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     MatCardModule,
     MatFormFieldModule,
-
     MatInputModule,
     ClarityModule,
     ReactiveFormsModule,

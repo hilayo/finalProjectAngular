@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
+import { signUpOutput } from './signUp/signUpOutput';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +14,7 @@ export class SLoginService {
   }
 path:string = 'https://reqres.in/api/login';
 
-  callLogin(user:string,password:string) : Observable<any>
+  callLogin(user:string,password:string) : Observable<signUpOutput>
   {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -25,7 +28,7 @@ path:string = 'https://reqres.in/api/login';
          'email' : user,
          'password' : password
      };
-    return this.http.post<any>(this.path , params , httpOptions);
+    return this.http.post<signUpOutput>(this.path , params , httpOptions);
 
 }
 }
