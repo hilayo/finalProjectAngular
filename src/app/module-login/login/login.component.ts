@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { error } from '@angular/compiler/src/util';
 import { SLoginService } from '../slogin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,9 +25,12 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.min(1)])
     });
   }
-  constructor(private slogin: SLoginService) { }
+  constructor(private slogin: SLoginService,private router :Router) { }
 
+  checkValidation(){
+    return this.form.valid;
 
+  }
   submit() {
     if (this.form.invalid) {
       this.error = 'User or password are not valid';
@@ -36,7 +40,14 @@ export class LoginComponent implements OnInit {
     this.slogin
       .callLogin(this.form.value.username, this.form.value.password)
       .subscribe(res => {
-        alert(res);
+        if(!res){
+        this.error = 'call login fail';
+        return;
+        }
+        //navigate to homepage
+        this.router.navigate(['/homePage']);
+
+
       });
   }
 }

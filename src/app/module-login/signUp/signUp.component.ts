@@ -2,7 +2,6 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { error } from '@angular/compiler/src/util';
 import { SLoginService } from '../slogin.service';
-import { stat } from 'fs';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,14 +15,19 @@ export class signUpComponent implements OnInit {
 
   constructor(private slogin: SLoginService , private fb:FormBuilder ) { }
 
-  static confrimPasswordValidator (control:AbstractControl){
-    var password: string = control.get('password').value;
-    var confrimPassword: string=control.get('confrimPassword').value;
+  static confrimPasswordValidator (form: FormGroup){
 
+    var password: string = form.controls.password.value;
+    var confrimPassword: string =form.controls.confrimPassword.value ;
+//debugger;
     if(password!==confrimPassword)
-        control.setErrors({ desc:"error!!" });
-
- }
+    {
+      form.controls.confrimPassword.setErrors({ mismatch: true });
+    }
+  else {
+    form.controls.confrimPassword.setErrors(null);
+    }
+}
 
   ngOnInit(): void {
     this.form=this.fb.group(
@@ -32,23 +36,23 @@ export class signUpComponent implements OnInit {
           Validators.required,
           Validators.min(1),
           Validators.email,
-          Validators.pattern('^[a-zA-Z].*@.*\..+')]],
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
           'password': ['', [Validators.required, Validators.min(1)]],
           'confrimPassword': ['',  [Validators.required, Validators.min(1)]]
 
       },
-     {Validators : signUpComponent.confrimPasswordValidator });
+     {validator : signUpComponent.confrimPasswordValidator });
   }
 
 
 
 
-  checkValidation(){
 
-  }
 
   submit() {
+    alert(this.form.invalid);
     if (this.form.invalid) {
+        alert(this.form.errors)
       this.error = 'User or password are not valid';
       return;
     }
