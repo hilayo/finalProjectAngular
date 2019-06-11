@@ -23,10 +23,10 @@
 
           <!-- <p *ngIf="error" class="error">
             {{ error }}
-          </p>
-          <mat-error *ngIf="form.hasError(va)">
+          </p> -->
+          <mat-error *ngIf="form.hasError('mismatch')">
             Passwords do not match
-        </mat-error> -->
+        </mat-error>
 
           <div class="button">
             <button [disabled]="!this.form.valid" type="submit"  color="primary" mat-raised-button >next</button>

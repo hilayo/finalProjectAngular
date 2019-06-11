@@ -9,11 +9,13 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { CatagoriesComponent } from './catagories/catagories.component';
 import { ClothComponent } from './cloth/cloth.component';
-import { UploadPictureComponent } from './upload-picture/upload-picture.component';
 import { ClosetComponent } from './closet/closet.component';
 import {LoginModule} from '../app/module-login/module-login.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { UploadPictureModule } from './upload-picture/upload-picture.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,15 +25,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     FavoritesComponent,
     CatagoriesComponent,
     ClothComponent,
-    UploadPictureComponent,
-    ClosetComponent
+    ClosetComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    UploadPictureModule
 
 
 
