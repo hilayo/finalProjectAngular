@@ -15,7 +15,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { UploadPictureModule } from './upload-picture/upload-picture.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +34,6 @@ import { UploadPictureModule } from './upload-picture/upload-picture.module';
     BrowserAnimationsModule,
     MatToolbarModule,
     UploadPictureModule
-
-
 
   ],
   providers: [],

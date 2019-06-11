@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamUtil, WebcamInitError } from 'ngx-webcam';
+import { DbPicturesService } from '../shared/db-pictures.service';
 
 @Component({
   selector: 'app-upload-picture',
@@ -8,27 +9,21 @@ import { WebcamImage, WebcamUtil, WebcamInitError } from 'ngx-webcam';
   styleUrls: ['./upload-picture.component.scss']
 })
 export class UploadPictureComponent implements OnInit {
+
+  constructor(private pictureService:DbPicturesService){
+
+  }
   ngOnInit(): void {
 
   }
-  public seconds:number ;
+  //public seconds:number ;
    private trigger: Subject<void> = new Subject<void>();
 
-  // latest snapshot
+
   public webcamImage: WebcamImage = null;
 
   public triggerSnapshot(): void {
-    this.seconds = 3;
-    setTimeout(()=>{
-      this.seconds = 2;
-     setTimeout(()=>{
-       this.seconds = 1
-       setTimeout(()=>{
          this.trigger.next();
-         this.seconds = null;
-       },2000)
-     },2000)
-    },2000)
 
   }
 
@@ -39,5 +34,10 @@ export class UploadPictureComponent implements OnInit {
 
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
+  }
+  public savePicture()
+  {
+
+      this.pictureService.addPicture(this.webcamImage);
   }
 }
