@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+import { DbPicturesService } from '../shared/db-pictures.service';
 
 @Component({
   selector: 'app-cloth',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cloth.component.scss']
 })
 export class ClothComponent implements OnInit {
-
-  constructor() { }
+  @Input() ImageSrc: string;
+  constructor(private pictureService: DbPicturesService) { }
 
   ngOnInit() {
+
   }
 
 }

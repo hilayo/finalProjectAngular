@@ -10,7 +10,7 @@ import { DbPicturesService } from '../shared/db-pictures.service';
 })
 export class UploadPictureComponent implements OnInit {
 
-  constructor(private pictureService:DbPicturesService){
+  constructor(private pictureService :DbPicturesService){
 
   }
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class UploadPictureComponent implements OnInit {
   }
   public savePicture()
   {
-
-      this.pictureService.addPicture(this.webcamImage);
+    console.log("savePicture" , this.webcamImage.imageAsBase64.toString())
+      this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
   }
 }
