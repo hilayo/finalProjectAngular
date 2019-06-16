@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamUtil, WebcamInitError } from 'ngx-webcam';
 import { DbPicturesService } from '../shared/db-pictures.service';
+import { ImageProccessingService } from '../image-proccessing-core/image-proccessing.service';
 
 @Component({
   selector: 'app-upload-picture',
@@ -10,7 +11,7 @@ import { DbPicturesService } from '../shared/db-pictures.service';
 })
 export class UploadPictureComponent implements OnInit {
 
-  constructor(private pictureService :DbPicturesService){
+  constructor(private pictureService :DbPicturesService,private imgProccessService:ImageProccessingService){
 
   }
   ngOnInit(): void {
@@ -39,5 +40,12 @@ export class UploadPictureComponent implements OnInit {
   {
     console.log("savePicture" , this.webcamImage.imageAsBase64.toString())
       this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
+    }
+
+  public callAPI(){
+    this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data)=>{
+      debugger;
+        var a=0;  })
   }
+
 }
