@@ -7,6 +7,8 @@ import { UploadPictureComponent } from './upload-picture.component';
 import { SharedModule } from '../shared/shared.module';
 import {  WebcamModule } from 'ngx-webcam';
 import { ImageProccessingCoreModule } from '../image-proccessing-core/image-proccessing-core.module';
+import { UploadPictureRoutingModule } from './upload-picture-routing.moudle';
+
 @NgModule({
   declarations: [UploadPictureComponent],
   imports: [
@@ -14,7 +16,8 @@ import { ImageProccessingCoreModule } from '../image-proccessing-core/image-proc
     FormsModule,
     SharedModule,
     WebcamModule,
-    ImageProccessingCoreModule
+    ImageProccessingCoreModule,
+    UploadPictureRoutingModule
   ],
   exports: [UploadPictureComponent ]
 })
