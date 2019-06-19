@@ -46,8 +46,8 @@ export class UploadPictureComponent implements OnInit {
 
     //Please don't call this function in a loop my credit card will die and hunt you ,you been warned!!
   public callAPI(){
-    // this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data)=>{
-    // })
+    this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data)=>{
+    })
   }
 
 }
