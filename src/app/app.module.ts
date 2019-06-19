@@ -14,6 +14,8 @@ import {LoginModule} from '../app/module-login/module-login.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { UploadPictureModule } from './upload-picture/upload-picture.module';
+import { DbPicturesService } from './shared/db-pictures.service';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { UploadPictureModule } from './upload-picture/upload-picture.module';
     CatagoriesComponent,
     ClothComponent,
     ClosetComponent,
+    SearchComponent,
 
   ],
   imports: [
@@ -36,7 +39,7 @@ import { UploadPictureModule } from './upload-picture/upload-picture.module';
     UploadPictureModule
 
   ],
-  providers: [],
+  providers: [DbPicturesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

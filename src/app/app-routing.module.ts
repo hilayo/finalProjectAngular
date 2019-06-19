@@ -7,7 +7,7 @@ import { ClosetComponent } from './closet/closet.component';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', redirectTo: 'homePage', pathMatch: 'full' },
   { path: 'uploadPicture',
     loadChildren: () => import('./upload-picture/upload-picture.module').then(mod => mod.UploadPictureModule) },
   { path: 'login', component: LoginComponent },

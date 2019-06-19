@@ -24,7 +24,7 @@ private apiKey:string="1458ad28bb44457583a9276eb9c2ef00";
                             })
                            };
 debugger;
-      const body={ "url":"https://sc02.alicdn.com/kf/HTB1Je9EmrZnBKNjSZFGq6zt3FXaV/2017-latest-design-women-hand-made-sweater.jpg" }
+      const body={ "url":"https://static.galmeetsglamcollection.com/media/catalog/product/k/0/k0130m-93-main.jpg" }
     return this.http.post<imageProccessingOutput>(this.url , body , httpOptions).pipe(map(result=>
    //   tap(result => console.log(result)),
       new imageProccessingMinOutput(result.color,result.tags,result.description)

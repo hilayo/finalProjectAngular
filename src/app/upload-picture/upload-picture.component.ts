@@ -38,6 +38,7 @@ export class UploadPictureComponent implements OnInit {
   }
   public savePicture()
   {
+    debugger;
     console.log("savePicture" , this.webcamImage.imageAsBase64.toString())
       this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
     }
@@ -46,7 +47,7 @@ export class UploadPictureComponent implements OnInit {
     //Please don't call this function in a loop my credit card will die and hunt you ,you been warned!!
   public callAPI(){
     // this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data)=>{
-    //})
+    // })
   }
 
 }

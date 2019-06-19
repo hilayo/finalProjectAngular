@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DbPicturesService } from '../shared/db-pictures.service';
 
 
+
 @Component({
   selector: 'app-closet',
   templateUrl: './closet.component.html',
@@ -16,9 +17,7 @@ export class ClosetComponent implements OnInit {
   }
 
   ngOnInit() {
-    var arrayImg:string[] = this.pictureService.getImages();
-    console.log("closet on init"+ arrayImg.length);
-    this.imageArray= this.pictureService.getImages();
+    this.imageArray = this.pictureService.getImages();
   }
 
 
