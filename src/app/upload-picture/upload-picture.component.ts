@@ -42,10 +42,11 @@ export class UploadPictureComponent implements OnInit {
       this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
     }
 
+
+    //Please don't call this function in a loop my credit card will die and hunt you ,you been warned!!
   public callAPI(){
-    this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data)=>{
-      debugger;
-        var a=0;  })
+    // this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data)=>{
+    //})
   }
 
 }

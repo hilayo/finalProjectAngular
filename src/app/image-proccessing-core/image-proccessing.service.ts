@@ -1,45 +1,37 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
+import { map ,tap} from 'rxjs/operators';
+import {imageProccessingOutput,imageProccessingMinOutput} from './image-proccessingOutput';
 @Injectable({
   providedIn: 'root'
 })
 
 export class ImageProccessingService {
- url:string ="https://westeurope.api.cognitive.microsoft.com/vision/v2.0/analyze?visualFeatures=Categories&details=Celebrities&language=en"
+ private url:string ="https://westeurope.api.cognitive.microsoft.com/vision/v2.0/analyze?visualFeatures=Color,Tags,Description&language=en";
+private apiKey:string="1458ad28bb44457583a9276eb9c2ef00";
   constructor( private http:HttpClient) { }
+
 
    CallImageProccessingApi(ImageBase64:string) : Observable<any>
    {
-
       const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        //'Authorization': 'my-auth-token',
-      //  'Access-Control-Allow-Origin':"*",
-        'Ocp-Apim-Subscription-Key':"1458ad28bb44457583a9276eb9c2ef00"
-        // 'visualFeatures' : "Categories,Color,Description,Tags,ImageType",
-        // "language": "en"
-      })
-      };
-      const body={
-        "url":"https://images-na.ssl-images-amazon.com/images/I/81kBsb3UgFL._SX425_.jpg"
-      }
-
-        // let params = {
-        //   'visualFeatures' : "Categories,Color,Description,Tags,ImageType",
-        //   "language": "en",
-        //   "details": "{string}"};
-
-//https://westeurope.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Categories&language=en
+                            headers: new HttpHeaders({
+                              'Content-Type':  'application/json',
+                              'Ocp-Apim-Subscription-Key': this.apiKey,
+                              //'Authorization': 'my-auth-token',
+                              'Access-Control-Allow-Origin':"*"
+                            })
+                           };
 debugger;
-    return this.http.post<any>(this.url , body , httpOptions);
+      const body={ "url":"https://sc02.alicdn.com/kf/HTB1Je9EmrZnBKNjSZFGq6zt3FXaV/2017-latest-design-women-hand-made-sweater.jpg" }
+    return this.http.post<imageProccessingOutput>(this.url , body , httpOptions).pipe(map(result=>
+   //   tap(result => console.log(result)),
+      new imageProccessingMinOutput(result.color,result.tags,result.description)
+
+
+       ));
   }
 }
-// export class signUpOutput{
-//   token:string;
-
-// }
 
 
