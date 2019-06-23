@@ -1,8 +1,7 @@
-import { Component, OnInit ,} from '@angular/core';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -10,6 +9,7 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
   myControl = new FormControl();
+  myForm=new FormGroup({myControl: this.myControl });
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
 

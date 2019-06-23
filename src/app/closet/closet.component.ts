@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DbPicturesService } from '../shared/db-pictures.service';
 
 
-
 @Component({
   selector: 'app-closet',
   templateUrl: './closet.component.html',

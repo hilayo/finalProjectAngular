@@ -9,7 +9,7 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'homePage', pathMatch: 'full' },
   { path: 'uploadPicture',
-    loadChildren: () => import('./upload-picture/upload-picture.module').then(mod => mod.UploadPictureModule) },
+    loadChildren: './upload-picture/upload-picture.module#UploadPictureModule' },
   { path: 'login', component: LoginComponent },
   { path: 'homePage', component: HomepageComponent },
   { path: 'signUp', component: signUpComponent },

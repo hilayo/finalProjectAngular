@@ -13,10 +13,11 @@ import { ClosetComponent } from './closet/closet.component';
 import {LoginModule} from '../app/module-login/module-login.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { UploadPictureModule } from './upload-picture/upload-picture.module';
 import { DbPicturesService } from './shared/db-pictures.service';
 import { SearchComponent } from './search/search.component';
-
+import { WeatherComponent } from './weather/weather.component';
+import { ChooseClothViewComponent } from './choose-cloth-view/choose-cloth-view.component';
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,8 @@ import { SearchComponent } from './search/search.component';
     ClothComponent,
     ClosetComponent,
     SearchComponent,
+    WeatherComponent,
+    ChooseClothViewComponent,
 
   ],
   imports: [
@@ -36,7 +39,7 @@ import { SearchComponent } from './search/search.component';
     LoginModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    UploadPictureModule
+    MatCardModule
 
   ],
   providers: [DbPicturesService],
