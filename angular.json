@@ -30,7 +30,6 @@
             ],
             "styles": [
               "src/styles.scss"
-
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -88,6 +87,7 @@
             "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.scss"
+
             ],
             "scripts": [],
             "assets": [

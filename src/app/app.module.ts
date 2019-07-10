@@ -18,6 +18,21 @@ import { SearchComponent } from './search/search.component';
 import { WeatherComponent } from './weather/weather.component';
 import { ChooseClothViewComponent } from './choose-cloth-view/choose-cloth-view.component';
 import {MatCardModule} from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
+  MatTabsModule
+} from '@angular/material';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,10 +54,36 @@ import {MatCardModule} from '@angular/material/card';
     LoginModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatCardModule,
+     FlexLayoutModule,
+     MatButtonModule,
+    MatCheckboxModule,
+    AngularFontAwesomeModule,
+    //server
+    //material
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatTabsModule,
+    MatToolbarModule,
     MatCardModule
 
   ],
+
+
+  exports:[
+  MatButtonModule,
+  MatCheckboxModule],
   providers: [DbPicturesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

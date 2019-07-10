@@ -1,7 +1,7 @@
 <div style="text-align:center">
   <br/>
   <div>
-    <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+    <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" ></webcam>
     <br/>
     <!-- <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button> -->
     <button id="savePic" (click)="savePicture();">save</button>
