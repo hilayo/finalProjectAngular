@@ -7,7 +7,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { StartPageComponent } from './start-page/start-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { CatagoriesComponent } from './catagories/catagories.component';
 import { ClothComponent } from './cloth/cloth.component';
 import { ClosetComponent } from './closet/closet.component';
 import {LoginModule} from '../app/module-login/module-login.module';
@@ -18,21 +17,29 @@ import { SearchComponent } from './search/search.component';
 import { WeatherComponent } from './weather/weather.component';
 import { ChooseClothViewComponent } from './choose-cloth-view/choose-cloth-view.component';
 import {MatCardModule} from '@angular/material/card';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { CatagoriesComponent } from './catagories/catagories.component';
+import { FormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
+// import {MatGridListModule} from '@angular/material/grid-list';
 import {
   MatButtonModule,
-  MatCheckboxModule,
   MatDialogModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatSelectModule,
   MatSidenavModule,
   MatSlideToggleModule,
   MatTabsModule
 } from '@angular/material';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { CategoryDialogComponent } from './category-dialog/category-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +53,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     SearchComponent,
     WeatherComponent,
     ChooseClothViewComponent,
-
+    CategoryDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -55,15 +62,27 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
+    FlexLayoutModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDialogModule
+    // MatGridListModule
+
+  ],
+  exports:[
+    FlexLayoutModule,
+    // MatGridListModule
      FlexLayoutModule,
      MatButtonModule,
     MatCheckboxModule,
     AngularFontAwesomeModule,
-    //server
+    //server,
     //material
     MatButtonModule,
+    MatIconModule,
     MatCardModule,
-    MatCheckboxModule,
     MatDialogModule,
     MatIconModule,
     MatInputModule,
@@ -74,14 +93,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     MatSlideToggleModule,
     MatTabsModule,
     MatToolbarModule,
-    MatCardModule
-
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule
   ],
 
 
-  exports:[
-  MatButtonModule,
-  MatCheckboxModule],
+  entryComponents:[CategoryDialogComponent],
   providers: [DbPicturesService],
   bootstrap: [AppComponent]
 })

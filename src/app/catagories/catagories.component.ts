@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
-export enum CATEGORIES{
-
-  COLOR=1,
-  TYPE_ITEM=2,
-  KIND_CLOTH=3,
-  SEASONS=4,
-
-}
 
 export enum COLOR_CATEGORY {
   RED = 1,
@@ -25,7 +18,7 @@ export enum COLOR_CATEGORY {
   GREY=13,
 }
 
-export enum KIND_CLOTH_CATEGORY {
+export enum CLOTH_STYLE_CATEGORY {
   ELEGANT = 1,
   CASUALE=2,
   WORK_CLOTH=3,
@@ -52,6 +45,7 @@ export enum SEASONS_CATEGORY {
   WINTER=2,
   FALL=3,
   SPRING=4,
+
 }
 @Component({
   selector: 'app-catagories',
@@ -60,14 +54,25 @@ export enum SEASONS_CATEGORY {
 })
 
 
-export class CatagoriesComponent implements OnInit {
-  keys :String[];
-  constructor() {
-    this.keys = Object.keys(this.colors).filter(f => !isNaN(Number(f)));
-  }
-  colors = COLOR_CATEGORY;
-//typeOfItem=TYPE_ITEM_CATEGORY;
-  ngOnInit() {
-  }
 
+export class CatagoriesComponent implements OnInit {
+
+  constructor() {
+
+  }
+  typesClothForm = new FormControl();
+ seasonForm=new FormControl();
+ clothStyleForm=new FormControl();
+
+  typeClothList: string[];
+  colorList :String[];
+  seasonList :string[];
+  clothStyleList: string[];
+
+  ngOnInit() {
+  this.colorList=Object.keys(COLOR_CATEGORY).map(key => COLOR_CATEGORY[key]).filter(value => typeof value === 'string');
+  this.typeClothList=Object.keys(TYPE_ITEM_CATEGORY).map(key => TYPE_ITEM_CATEGORY[key]).filter(value => typeof value === 'string');
+  this.seasonList=Object.keys(SEASONS_CATEGORY).map(key => SEASONS_CATEGORY[key]).filter(value => typeof value === 'string');
+  this.clothStyleList=Object.keys(CLOTH_STYLE_CATEGORY).map(key => CLOTH_STYLE_CATEGORY[key]).filter(value => typeof value === 'string');
+  }
 }
