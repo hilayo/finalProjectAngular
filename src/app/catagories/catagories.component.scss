@@ -87,12 +87,12 @@ font-size:1.4em;
 div {
   text-align: center;
 }
-.minus:hover{
-  background-color:#c2185b !important;
-}
-.plus:hover{
-  background-color:#c2185b !important;
-}
+ .minus:hover{
+   background-color:#ffcf53 !important;
+ }
+ .plus:hover{
+   background-color:#ffcf53!important;
+ }
 /*Prevent text selection*/
 span{
   -webkit-user-select: none;
