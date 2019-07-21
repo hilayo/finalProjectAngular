@@ -36,7 +36,8 @@ export enum TYPE_ITEM_CATEGORY{
   SWEATER=4,
   PANTS = 5,
   ACCESSORIES=6,
-  OTHERS=7,
+  SHOES=7,
+  OTHERS=8,
 
 }
 

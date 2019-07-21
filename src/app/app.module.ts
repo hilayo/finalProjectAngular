@@ -66,7 +66,9 @@ import { CategoryDialogComponent } from './category-dialog/category-dialog.compo
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule
     // MatGridListModule
 
   ],

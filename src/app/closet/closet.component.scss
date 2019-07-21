@@ -1,12 +1,8 @@
-
 .container {
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
   margin: 5px;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: stretch;
-  align-content: stretch;
-  align-items: baseline;
+  flex-direction: row;
+  border: 1px solid red;
 }

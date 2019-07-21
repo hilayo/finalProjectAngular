@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve-server":"json-server --watch ./src/db/clothes.json"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +32,7 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
+    "json-server": "^0.15.0",
     "ngx-bootstrap": "^4.3.0",
     "ngx-webcam": "^0.2.2",
     "rxjs": "~6.3.3",

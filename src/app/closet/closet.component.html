@@ -1,11 +1,8 @@
-
 <!-- <app-search></app-search> -->
-<div   class="container">
-      <div *ngFor="let image of imageArray" >
-          <div class="col-lg-1 botm-margin mb-4"></div>
-     <app-cloth   [ImageSrc]="image" ></app-cloth>
+<div fxLayout="row" >
+  <div *ngFor="let cloth of clothArray | async" class="container">
+    <!-- <div class="col-lg-1 botm-margin mb-4"></div> -->
+    <app-cloth fxflex="20%" [cloth]="cloth"></app-cloth>
   </div>
+
 </div>
-
-
-

@@ -4,17 +4,20 @@
     <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" ></webcam>
     <br/>
     <!-- <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button> -->
-    <button id="savePic" (click)="savePicture();">save</button>
 
 
-    <img id="snapshotBtn" (click)="triggerSnapshot();" style="height:50px; width:50px;" src="assets/images/cameraImage.jpg" alt="snapshot"/>
-    <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/succesicon2.jpg" alt="snapshot"/>
-    <button id="callAPI" (click)="callAPI();">call API</button>
+
+    <img id="snapshotBtn" (click)="triggerSnapshot();" style="height:50px; width:50px;" src="assets/images/cameraImg.jpg" alt="snapshot"/>
+
+    <!-- <button id="callAPI" (click)="callAPI();">call API</button> -->
   </div>
 </div>
 <div style="text-align:center" class="snapshot" *ngIf="webcamImage">
-  <h2>Nice one!</h2>
+  <h2>Save picture!</h2>
   <img [src]="webcamImage.imageAsDataUrl"/>
+<br/>
+   <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/>
+
 </div>
 
 <!-- example:show image from imageAsBase64  -->

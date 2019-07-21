@@ -3,6 +3,8 @@ import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamUtil, WebcamInitError } from 'ngx-webcam';
 import { DbPicturesService } from '../shared/db-pictures.service';
 import { ImageProccessingService } from '../image-proccessing-core/image-proccessing.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 
 @Component({
   selector: 'app-upload-picture',
@@ -11,7 +13,8 @@ import { ImageProccessingService } from '../image-proccessing-core/image-procces
 })
 export class UploadPictureComponent implements OnInit {
 
-  constructor(private pictureService :DbPicturesService,private imgProccessService:ImageProccessingService){
+  constructor(private pictureService :DbPicturesService,private imgProccessService:ImageProccessingService,
+    public dialog: MatDialog){
 
   }
   ngOnInit(): void {
@@ -38,9 +41,14 @@ export class UploadPictureComponent implements OnInit {
   }
   public savePicture()
   {
-    debugger;
-    console.log("savePicture" , this.webcamImage.imageAsBase64.toString())
+
+   // console.log("savePicture" , this.webcamImage.imageAsBase64.toString())
+
       this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
+      // let dialogRef = this.dialog.open(CategoryDialogComponent, {
+      //   height: '400px',
+      //   width: '600px',
+      //   });
     }
 
 
