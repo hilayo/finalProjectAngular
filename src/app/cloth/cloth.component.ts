@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, EventEmitter, Output } from '@angular/core';
 import { DbPicturesService } from '../shared/db-pictures.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { CatagoriesComponent } from '../catagories/catagories.component';
@@ -13,6 +13,7 @@ import { Cloth } from './Cloth';
 export class ClothComponent implements OnInit {
   //@Input() ImageSrc: string;
   @Input() cloth:Cloth;
+  @Output() deleteEM:EventEmitter<string> = new EventEmitter();
   constructor(private pictureService: DbPicturesService,public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -26,7 +27,10 @@ export class ClothComponent implements OnInit {
     });
   }
   deleteItem(id:string){
-    this.pictureService.deletePicture(id);
+    this.deleteEM.emit(id);
+  }
+  choose(){
+
   }
 }
 

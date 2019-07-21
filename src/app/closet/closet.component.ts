@@ -15,9 +15,10 @@ export class ClosetComponent implements OnInit {
 
   ngOnInit() {
     this.clothArray=this.pictureService.getCloths();
-console.log(this.clothArray)
-     //= this.pictureService.getImages().subscribe(data=>);
-    //this.imageArray = this.clothArray.map(x => <string>x.image);
+  }
+  deleteCloth(id:string){
+    debugger;
+    this.pictureService.deletePicture(id);
   }
 
 }
