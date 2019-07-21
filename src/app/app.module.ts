@@ -17,7 +17,6 @@ import { SearchComponent } from './search/search.component';
 import { WeatherComponent } from './weather/weather.component';
 import { ChooseClothViewComponent } from './choose-cloth-view/choose-cloth-view.component';
 import {MatCardModule} from '@angular/material/card';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CatagoriesComponent } from './catagories/catagories.component';

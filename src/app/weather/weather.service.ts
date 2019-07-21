@@ -1,9 +1,22 @@
 import { Injectable } from '@angular/core';
-
+import {HttpClient,HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { WeatherData } from './weatherData';
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
+  private apiKey="14b3cf0827fc9fa5f94d4bcf5a3cf5fb";
+  constructor( private http:HttpClient) { }
 
-  constructor() { }
+
+//openweathermap api
+  public getForecast(lat:number,lon:number): Observable<any>{
+    //api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=14b3cf0827fc9fa5f94d4bcf5a3cf5fb
+
+    var url:string = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&APPID=${this.apiKey}`;
+      //console.log("the url",url)
+      return  this.http.get<any>(url)
+  }
+
 }
