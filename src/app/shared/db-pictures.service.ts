@@ -1,13 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Cloth } from "../cloth/Cloth";
-import {
-  COLOR_CATEGORY,
-  CLOTH_STYLE_CATEGORY,
-  TYPE_ITEM_CATEGORY,
-  SEASONS_CATEGORY
-} from "../catagories/catagories.component";
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+// import {Subject} from "rxjs/Subject";
+// import {Observable} from "rxjs/Observable";
 
 const UID = function() {
   // Math.random should be unique because of its seeding algorithm.
@@ -25,8 +21,10 @@ const UID = function() {
 })
 export class DbPicturesService {
   url:string="http://localhost:3000/clothes";
-  private clothArray: Cloth[] = new Array();
-  constructor(private http: HttpClient) {}
+  private _clothsArray: BehaviorSubject<Cloth[]> = new BehaviorSubject(null);
+  constructor(private http: HttpClient) {
+    this.loadInitialData();
+  }
 
   addPicture(imageBase64: any) {
     const cloth: Cloth = {
@@ -36,25 +34,40 @@ export class DbPicturesService {
       typeOfItem: null
     };
     this.saveCloth(cloth);
-   // console.log("add picture", cloth);
-   // this.clothArray.push(cloth);
   }
 
   saveCloth(cloth:Cloth){
-  this.http.post(this.url,cloth).subscribe(data=>console.log("yay!!"));
+  this.http.post(this.url,cloth).subscribe(data=>{
+    debugger;
+    this._clothsArray.getValue().push(cloth);
+    this._clothsArray.next( this._clothsArray.getValue());
+     });
+
   }
 
   getCloths(): Observable<Cloth[]>{
+   return new Observable(fn => this._clothsArray.subscribe(fn));
+  }
+//   deletePicture(id:string){
+//     console.log(id)
+// ;    this.http.delete( `${this.url}/${id}`).subscribe(data=>console.log("delete success"));
+//   }
 
-    return this.http.get<Cloth[]>(this.url);
-   // debugger;
-    //return this.clothArray;
-  }
-  deletePicture(id:string){
-    console.log(id)
-;    this.http.delete( `${this.url}/${id}`).subscribe(data=>console.log("delete success"));
-  //   this.imageArray.filter
-  //   this.imageArray.push(imageBase64);
-  //  azure???
-  }
+  loadInitialData() {
+     this.http.get<Cloth[]>(this.url).subscribe(data=>{this._clothsArray.next(data),
+      err=> console.log("Error retrieving Todos")});
+
+}
+deletePicture(id:string){
+
+  this.http.delete( `${this.url}/${id}`).subscribe(data=>{
+    let clothsArray:Cloth[]=this._clothsArray.getValue();
+    clothsArray.forEach((item,index)=>{
+      if(item.id === id) { clothsArray.splice(index, 1); }
+    });
+    this._clothsArray.next(clothsArray);
+    console.log("delete success")
+  });
+}
+
 }
