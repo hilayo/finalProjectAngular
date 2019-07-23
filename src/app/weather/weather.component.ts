@@ -25,26 +25,29 @@ export class WeatherComponent implements OnInit {
   constructor(private weatherService:WeatherService) { }
 
   ngOnInit() {
-   //this.lat =  31.771959;
-  // this.lng = 35.217018;
-   // this.getForecast();
-   this.setCurrentLocation(this.getForecast.bind(this));
+   //this.setCurrentLocation(this.getForecast.bind(this));
+   this.setCurrentLocation().then(() => this.getForecast()).catch((err) => console.log(err));
 
   }
 
-  setCurrentLocation(callback){
+
+  setCurrentLocation(){
+    var promise = new Promise((resolve, reject) => {
     if(!navigator.geolocation){//set default coordinates of Jerusalem, Israel
         this.lat =  31.771959;
         this.lng = 35.217018;
-        callback();
+        resolve();
         return;
     }
     navigator.geolocation.getCurrentPosition(position => {
        this.lat = position.coords.latitude;
        this.lng = position.coords.longitude;
-       callback();
-     });
-  }
+       resolve();
+     } , reject);
+    });
+    return promise;
+}
+
 
   //call api weather
   getForecast() {
