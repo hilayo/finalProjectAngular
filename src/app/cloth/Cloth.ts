@@ -1,18 +1,17 @@
-import { COLOR_CATEGORY, CLOTH_STYLE_CATEGORY, TYPE_ITEM_CATEGORY, SEASONS_CATEGORY } from '../catagories/catagories.component';
 
 
 export class Cloth {
   id: string;
   image: String;
-  color: COLOR_CATEGORY[];
-  kindCloth?: CLOTH_STYLE_CATEGORY[];
-  typeOfItem: TYPE_ITEM_CATEGORY[];
-  seasons?: SEASONS_CATEGORY[];
+  color: string[];
+  kindCloth?: string[];
+  typeOfItem: string[];
+  seasons?: string[];
 
 
   constructor(id: string, image: String,
-    color: COLOR_CATEGORY[], typeOfItem: TYPE_ITEM_CATEGORY[], kindCloth?: CLOTH_STYLE_CATEGORY[],
-    seasons?: SEASONS_CATEGORY[], ) {
+    color: string[], typeOfItem: string[], kindCloth?: string[],
+    seasons?: string[], ) {
     this.id = id;
     this.image = image;
     this.color = color;

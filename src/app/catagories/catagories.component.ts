@@ -2,78 +2,77 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Cloth } from '../cloth/Cloth';
 
+const COLOR_CATEGORY =[
+  {key:'RED',label:'Red'},
+  {key:'BLACK',label:'Black'},
+  {key:'WHITE',label:'White'},
+  {key:'YELLOW',label:'Yellow'},
+  {key:'BLUE',label:'blue'},
+  {key:'PINK',label:'Pimk'},
+  {key:'PURPLE',label:'Purple'},
+  {key:'BROWN',label:'Brown'},
+  {key:'MIXCOLOR',label:'Mixcolor'},
+  {key:'ORANGE',label:'Orange'},
+  {key:'JEANS',label:'Jeans'},
+  {key:'GREY',label:'Grey'}
+];
 
-export enum COLOR_CATEGORY {
-  RED = 1,
-  BLACK=2,
-  WHITE=3,
-  YELLOW=4,
-  GREEN = 5,
-  BLUE=6,
-  PINK=7,
-  PURPLE=8,
-  BROWN=9,
-  MIXCOLOR=10,
-  ORANGE=11,
-  JEANS=12,
-  GREY=13,
-}
+const CLOTH_STYLE_CATEGORY =[
+  {key:'ELEGANT',label:'Elegant'},
+  {key:'CASUALE',label:'Casuale'},
+  {key:'WORK_CLOTH',label:'Work '},
+  {key:'EVENT',label:'Event'},
+  {key:'NIGHT_CLOTH',label:'Night  Cloth'},
+  {key:'SPORTIVE',label:'Sportive'},
+  {key:'PREGNACY',label:'Pregnacy'}
+];
 
-export enum CLOTH_STYLE_CATEGORY {
-  ELEGANT = 1,
-  CASUALE=2,
-  WORK_CLOTH=3,
-  EVENT=4,
-  NIGHT_CLOTH = 5,
-  SPORTIVE=6,
-  PREGNACY=7,
 
-}
+const TYPE_ITEM_CATEGORY =[
+  {key:'SHIRT',label:'Shirt'},
+  {key:'SKIRT',label:'Skrit'},
+  {key:'DRESS',label:'Dress'},
+  {key:'SWEATER',label:'Sweater'},
+  {key:'PANTS',label:'Pants'},
+  {key:'ACCESSORIES',label:'Accessories'},
+  {key:'SHOES',label:'Shoes'},
+  {key:'OTHERS',label:'Other'}
+];
 
-export enum TYPE_ITEM_CATEGORY{
-  SHIRT = 1,
-  SKIRT=2,
-  DRESS=3,
-  SWEATER=4,
-  PANTS = 5,
-  ACCESSORIES=6,
-  SHOES=7,
-  OTHERS=8,
+ const SEASONS_CATEGORY =[
+  {key:'SUMMER',label:'Summer'},
+  {key:'WINTER',label:'Winter'},
+  {key:'FALL',label:'Fall'},
+  {key:'SPRING',label:'Spring'}
+];
 
-}
-
-export enum SEASONS_CATEGORY {
-  SUMMER = 1,
-  WINTER=2,
-  FALL=3,
-  SPRING=4,
-
-}
 @Component({
   selector: 'app-catagories',
   templateUrl: './catagories.component.html',
   styleUrls: ['./catagories.component.scss']
 })
-
-
-
 export class CatagoriesComponent implements OnInit {
-  @Input() cloth:Cloth;
-  constructor() {
-  }
+
+  @Input() cloth: Cloth;
+  seasonList = SEASONS_CATEGORY;
+  typeClothList=CLOTH_STYLE_CATEGORY;
+  clothStyleList=CLOTH_STYLE_CATEGORY;
+  colorList=COLOR_CATEGORY;
+
   typesClothForm = new FormControl();
- seasonForm=new FormControl();
- clothStyleForm=new FormControl();
+  seasonForm = new FormControl();
+  clothStyleForm = new FormControl();
 
-  typeClothList: string[];
-  colorList :String[];
-  seasonList :string[];
-  clothStyleList: string[];
 
+constructor() {
+   //const selected = SEASONS_CATEGORY.filter(c => S_D.includes(c.key))
+    //this.seasonForm.setValue(selected)
+
+  }
   ngOnInit() {
-  this.colorList=Object.keys(COLOR_CATEGORY).map(key => COLOR_CATEGORY[key]).filter(value => typeof value === 'string');
-  this.typeClothList=Object.keys(TYPE_ITEM_CATEGORY).map(key => TYPE_ITEM_CATEGORY[key]).filter(value => typeof value === 'string');
-  this.seasonList=Object.keys(SEASONS_CATEGORY).map(key => SEASONS_CATEGORY[key]).filter(value => typeof value === 'string');
-  this.clothStyleList=Object.keys(CLOTH_STYLE_CATEGORY).map(key => CLOTH_STYLE_CATEGORY[key]).filter(value => typeof value === 'string');
+    this.colorList = Object.keys(COLOR_CATEGORY).map(key => COLOR_CATEGORY[key]).filter(value => typeof value === 'string');
+    this.seasonForm.valueChanges.subscribe((value) =>{
+      console.log(value)
+    })
   }
 }
