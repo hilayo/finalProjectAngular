@@ -59,20 +59,29 @@ export class CatagoriesComponent implements OnInit {
   clothStyleList=CLOTH_STYLE_CATEGORY;
   colorList=COLOR_CATEGORY;
 
-  typesClothForm = new FormControl();
-  seasonForm = new FormControl();
-  clothStyleForm = new FormControl();
+  form: FormGroup=new FormGroup(
+    {
+  typesClothForm : new FormControl(),
+  seasonForm : new FormControl(),
+  clothStyleForm : new FormControl()}
+  );
 
 
 constructor() {
-   //const selected = SEASONS_CATEGORY.filter(c => S_D.includes(c.key))
-    //this.seasonForm.setValue(selected)
-
+  debugger;
+  if(this.cloth.seasons){
+   let clothSeason = SEASONS_CATEGORY.filter(c => this.cloth.seasons.includes(c.key));
+    this.form.value.seasonForm.setValue(clothSeason);
+  }
   }
   ngOnInit() {
     this.colorList = Object.keys(COLOR_CATEGORY).map(key => COLOR_CATEGORY[key]).filter(value => typeof value === 'string');
-    this.seasonForm.valueChanges.subscribe((value) =>{
+
+
+
+    this.form.value.seasonForm.valueChanges.subscribe((value) =>{
       console.log(value)
-    })
+    });
   }
+
 }

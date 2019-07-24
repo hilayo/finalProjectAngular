@@ -20,15 +20,11 @@ const UID = function () {
   providedIn: "root"
 })
 export class DbPicturesService {
-<<<<<<< HEAD
-  url: string = "http://localhost:3000/clothes";
-=======
   url:string="http://localhost:3000/clothes";
   private clothArray: Cloth[] = new Array();
   private choosenClothesArray: Cloth[] = new Array();
 
 
->>>>>>> ba91b8ad1f2297f61b68139cb7a90ca00b5697e6
   private _clothsArray: BehaviorSubject<Cloth[]> = new BehaviorSubject(null);
   constructor(private http: HttpClient) {
     this.loadInitialData();
@@ -56,8 +52,6 @@ export class DbPicturesService {
     return  this._clothsArray.asObservable();
   }
 
-<<<<<<< HEAD
-=======
 
   addToChoosenClothes(cloth:Cloth){
    this.choosenClothesArray.push(cloth);
@@ -70,7 +64,6 @@ export class DbPicturesService {
 //     console.log(id)
 // ;    this.http.delete( `${this.url}/${id}`).subscribe(data=>console.log("delete success"));
 //   }
->>>>>>> ba91b8ad1f2297f61b68139cb7a90ca00b5697e6
 
   loadInitialData() {
     this.http.get<Cloth[]>(this.url).subscribe(data => {
