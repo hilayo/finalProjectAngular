@@ -8,7 +8,7 @@
             </mat-card>
  -->
 
-<mat-card>
+<mat-card class="box">
   <mat-card-header>
     <mat-card-title>title</mat-card-title>
     <mat-card-subtitle>subtitle</mat-card-subtitle>
@@ -17,14 +17,20 @@
     <img mat-card-image [src]="'data:image/png;base64,' + cloth.image" />
   </mat-card-content>
   <mat-card-actions>
-    <button mat-fab color="primary" (click)="openCatagories()">
+    <button *ngIf="!isChoosen" mat-fab color="primary" (click)="openCatagories()">
       <mat-icon>class</mat-icon>
     </button>
-    <button mat-fab color="primary" (click)="deleteItem(cloth.id)">
+    <button *ngIf="!isChoosen" mat-fab color="primary" (click)="deleteItem(cloth.id)">
       <mat-icon>delete</mat-icon>
     </button>
-    <button mat-fab color="primary" (click)="choose()">
+    <button *ngIf="!isChoosen" mat-fab color="primary" (click)="choose()">
       <mat-icon>search</mat-icon>
+    </button>
+    <button *ngIf="!isChoosen" mat-fab color="primary" (click)="choose(cloth)">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button *ngIf="isChoosen" mat-fab color="primary" (click)="removeFromFavorite(cloth)">
+      <mat-icon>remove</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>

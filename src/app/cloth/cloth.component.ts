@@ -13,7 +13,9 @@ import { Cloth } from './Cloth';
 export class ClothComponent implements OnInit {
   //@Input() ImageSrc: string;
   @Input() cloth:Cloth;
+  @Input() isChoosen:boolean;
   @Output() deleteEM:EventEmitter<string> = new EventEmitter();
+  @Output() removeFavorite:EventEmitter<Cloth> = new EventEmitter();
   constructor(private pictureService: DbPicturesService,public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -29,8 +31,12 @@ export class ClothComponent implements OnInit {
   deleteItem(id:string){
     this.deleteEM.emit(id);
   }
-  choose(){
-
+  choose(cloth:Cloth){
+    this.pictureService.addToChoosenClothes(cloth);
+  }
+  removeFromFavorite(cloth:Cloth)
+  {
+    this.removeFavorite.emit(cloth);
   }
 }
 

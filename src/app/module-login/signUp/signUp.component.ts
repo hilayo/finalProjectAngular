@@ -9,7 +9,7 @@ import { SLoginService } from '../slogin.service';
   styleUrls: ['./signUp.component.scss']
 })
 export class signUpComponent implements OnInit {
-  @Input() error: string | null;
+  @Input() errors: string | null;
   @Output() submitEM = new EventEmitter();
   form: FormGroup;
 
@@ -38,7 +38,8 @@ export class signUpComponent implements OnInit {
           Validators.email,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
           'password': ['', [Validators.required, Validators.min(1)]],
-          'confrimPassword': ['',  [Validators.required, Validators.min(1)]]
+          'confrimPassword': ['',  [Validators.required, Validators.min(1)]],
+          'name':['',[Validators.required, Validators.min(1)]]
 
       },
      {validator : signUpComponent.confrimPasswordValidator });
@@ -53,12 +54,13 @@ export class signUpComponent implements OnInit {
     alert(this.form.invalid);
     if (this.form.invalid) {
         alert(this.form.errors)
-      this.error = 'User or password are not valid';
+      this.errors = 'User or password are not valid';
       return;
     }
     // call to server login
+    alert(this.form.value.name +"value");
     this.slogin
-      .callLogin(this.form.value.username, this.form.value.password)
+      .callLoginSignUp(this.form.value.username, this.form.value.password, this.form.value.name)
       .subscribe(res => {
         alert(res);
       });

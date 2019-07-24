@@ -26,6 +26,7 @@ const UID = function() {
 export class DbPicturesService {
   url:string="http://localhost:3000/clothes";
   private clothArray: Cloth[] = new Array();
+  private choosenClothesArray: Cloth[] = new Array();
   constructor(private http: HttpClient) {}
 
   addPicture(imageBase64: any) {
@@ -56,5 +57,12 @@ export class DbPicturesService {
   //   this.imageArray.filter
   //   this.imageArray.push(imageBase64);
   //  azure???
+  }
+
+  addToChoosenClothes(cloth:Cloth){
+   this.choosenClothesArray.push(cloth);
+  }
+  getChoosenClothes() {
+   return this.choosenClothesArray;
   }
 }
