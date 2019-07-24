@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Cloth } from '../cloth/Cloth';
 
 
 export enum COLOR_CATEGORY {
@@ -57,9 +58,8 @@ export enum SEASONS_CATEGORY {
 
 
 export class CatagoriesComponent implements OnInit {
-
+  @Input() cloth:Cloth;
   constructor() {
-
   }
   typesClothForm = new FormControl();
  seasonForm=new FormControl();

@@ -1,7 +1,7 @@
 
 <mat-card-title> Categories of clothing</mat-card-title>
 <mat-card-title> Please choose category for this cloth</mat-card-title>
-<app-catagories></app-catagories>
+<app-catagories [cloth]="data"></app-catagories>
 <div mat-dialog-actions>
 
   <button mat-button (click)="onNoClick()">No Thanks</button>
