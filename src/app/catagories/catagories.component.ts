@@ -51,38 +51,30 @@ const TYPE_ITEM_CATEGORY =[
   templateUrl: './catagories.component.html',
   styleUrls: ['./catagories.component.scss']
 })
-export class CatagoriesComponent implements OnInit {
-
+ export class CatagoriesComponent implements OnInit {
+//   @Output() getSelected: EventEmitter<Categories> = new EventEmitter();
+//   selectedCategories: Categories = new Categories();
   @Input() cloth: Cloth;
   seasonList = SEASONS_CATEGORY;
-  typeClothList=CLOTH_STYLE_CATEGORY;
+  typeClothList=TYPE_ITEM_CATEGORY;
   clothStyleList=CLOTH_STYLE_CATEGORY;
   colorList=COLOR_CATEGORY;
 
+  colorsClothForm:FormControl = new FormControl();
+  typesClothForm:FormControl = new FormControl();
+  seasonForm:FormControl = new FormControl();
+  clothStyleForm:FormControl = new FormControl();
 
-  form: FormGroup=new FormGroup({
-  typesClothForm:new FormControl(),
-  seasonForm:new FormControl(),
-  clothStyleForm:new FormControl(),
-  colorsClothForm:new FormControl()
-  });
 
- constructor() {
-//   @Output() getSelected: EventEmitter<Categories> = new EventEmitter();
-//   selectedCategories: Categories = new Categories();
-  //this.selectedCategories = { color: [], style: [], type: [], season: [] };
-  debugger;
-  if(this.cloth.seasons){
-   let clothSeason = SEASONS_CATEGORY.filter(c => this.cloth.seasons.includes(c.key));
-    this.form.value.seasonForm.setValue(clothSeason);
-  }
+constructor() {
+//  this.selectedCategories = { color: [], style: [], type: [], season: [] };
+   //const clothSeason = SEASONS_CATEGORY.filter(c => this.cloth.includes(c.key));
+   // this.seasonForm.setValue(clothSeason);
+
   }
   ngOnInit() {
-    this.colorList = Object.keys(COLOR_CATEGORY).map(key => COLOR_CATEGORY[key]).filter(value => typeof value === 'string');
-
-    this.form.value.seasonForm.valueChanges.subscribe((value) =>{
-      console.log(value)
-      //    this.colorList = Object.keys(COLOR_CATEGORY)
+   // this.colorList = Object.keys(COLOR_CATEGORY).map(key => COLOR_CATEGORY[key]).filter(value => typeof value === 'string');
+    // this.colorList = Object.keys(COLOR_CATEGORY)
     //   .map(key => COLOR_CATEGORY[key])
     //   .filter(value => typeof value === "string");
     // this.typeClothList = Object.keys(TYPE_ITEM_CATEGORY)
@@ -108,14 +100,24 @@ export class CatagoriesComponent implements OnInit {
     // this.colorsClothForm.valueChanges.subscribe(
     //   (value: COLOR_CATEGORY[]) => (this.selectedCategories.color = value)
     // );
-    });
+
+
+ //   this.seasonForm.valueChanges.subscribe((value) =>{
+   //   console.log(value)
+  //  })
   }
-  seasonSelected(value) {
-    console.log(this.selectedCategories);
-  }
-  search(event) {
-    // this.getSelected.emit(this.selectedCategories);
-    this.pictureService.search(event)
-    console.log(this.selectedCategories);
-  }
+  // seasonSelected(value) {
+  //   console.log(this.selectedCategories);
+  // }
+  // search(event) {
+  //   // this.getSelected.emit(this.selectedCategories);
+  //   this.pictureService.search(event)
+  //   console.log(this.selectedCategories);
+  // }
 }
+// export class Categories {
+//   color: COLOR_CATEGORY[];
+//   style: CLOTH_STYLE_CATEGORY[];
+//   type: TYPE_ITEM_CATEGORY[];
+//   season: SEASONS_CATEGORY[];
+// }

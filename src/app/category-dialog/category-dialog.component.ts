@@ -9,7 +9,6 @@ export class CategoryDialogComponent  {
   constructor(
     public dialogRef: MatDialogRef<CategoryDialogComponent>
     ,@Inject(MAT_DIALOG_DATA) public data: Cloth){
-  debugger;
 
     }
 
