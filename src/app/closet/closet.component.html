@@ -1,11 +1,21 @@
 <!-- <app-search></app-search> -->
-<div fxLayout="row" >
-  <div *ngFor="let cloth of clothArray | async" class="container">
-    <!-- <div class="col-lg-1 botm-margin mb-4"></div> -->
-    <app-cloth  [cloth]="cloth" [isChoosen]="isChoosen"  (deleteEM)="deleteCloth($event)"></app-cloth>
-  </div>
-  <mat-sidenav-container>
-    <mat-sidenav-content>Main</mat-sidenav-content>
-    <mat-sidenav-content>Main 2</mat-sidenav-content>
+<div >
+<mat-sidenav-container class="example-container" >
+    <mat-sidenav opened mode="side">
+      Start content
+    </mat-sidenav>
+    <mat-sidenav opened mode="side" position="end">
+        <div >
+            <app-catagories fxflex="20%" (getSelected)="search($event)" ></app-catagories>
+        </div>
+    </mat-sidenav>
+    <div fxflex="80%">
+        <div *ngFor="let cloth of clothArray | async" class="container">
+          <!-- <div class="col-lg-1 botm-margin mb-4"></div> -->
+          <app-cloth fxflex="80%" [cloth]="cloth" (deleteEM)="deleteCloth($event)"></app-cloth>
+        </div>
+      </div>
+
   </mat-sidenav-container>
 </div>
+

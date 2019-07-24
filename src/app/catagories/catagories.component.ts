@@ -59,15 +59,18 @@ export class CatagoriesComponent implements OnInit {
   clothStyleList=CLOTH_STYLE_CATEGORY;
   colorList=COLOR_CATEGORY;
 
-  form: FormGroup=new FormGroup(
-    {
-  typesClothForm : new FormControl(),
-  seasonForm : new FormControl(),
-  clothStyleForm : new FormControl()}
-  );
 
+  form: FormGroup=new FormGroup({
+  typesClothForm:new FormControl(),
+  seasonForm:new FormControl(),
+  clothStyleForm:new FormControl(),
+  colorsClothForm:new FormControl()
+  });
 
-constructor() {
+ constructor() {
+//   @Output() getSelected: EventEmitter<Categories> = new EventEmitter();
+//   selectedCategories: Categories = new Categories();
+  //this.selectedCategories = { color: [], style: [], type: [], season: [] };
   debugger;
   if(this.cloth.seasons){
    let clothSeason = SEASONS_CATEGORY.filter(c => this.cloth.seasons.includes(c.key));
@@ -77,11 +80,42 @@ constructor() {
   ngOnInit() {
     this.colorList = Object.keys(COLOR_CATEGORY).map(key => COLOR_CATEGORY[key]).filter(value => typeof value === 'string');
 
-
-
     this.form.value.seasonForm.valueChanges.subscribe((value) =>{
       console.log(value)
+      //    this.colorList = Object.keys(COLOR_CATEGORY)
+    //   .map(key => COLOR_CATEGORY[key])
+    //   .filter(value => typeof value === "string");
+    // this.typeClothList = Object.keys(TYPE_ITEM_CATEGORY)
+    //   .map(key => TYPE_ITEM_CATEGORY[key])
+    //   .filter(value => typeof value === "string");
+    // this.seasonList = Object.keys(SEASONS_CATEGORY)
+    //   .map(key => SEASONS_CATEGORY[key])
+    //   .filter(value => typeof value === "string");
+    // this.clothStyleList = Object.keys(CLOTH_STYLE_CATEGORY)
+    //   .map(key => CLOTH_STYLE_CATEGORY[key])
+    //   .filter(value => typeof value === "string");
+
+    // this.typesClothForm.valueChanges.subscribe(
+    //   (value: TYPE_ITEM_CATEGORY[]) => (this.selectedCategories.type = value)
+    // );
+    // this.seasonForm.valueChanges.subscribe(
+    //   (value: SEASONS_CATEGORY[]) => (this.selectedCategories.season = value)
+    // );
+    // this.clothStyleForm.valueChanges.subscribe(
+    //   (value: CLOTH_STYLE_CATEGORY[]) => (this.selectedCategories.style = value)
+    // );
+
+    // this.colorsClothForm.valueChanges.subscribe(
+    //   (value: COLOR_CATEGORY[]) => (this.selectedCategories.color = value)
+    // );
     });
   }
-
+  seasonSelected(value) {
+    console.log(this.selectedCategories);
+  }
+  search(event) {
+    // this.getSelected.emit(this.selectedCategories);
+    this.pictureService.search(event)
+    console.log(this.selectedCategories);
+  }
 }
