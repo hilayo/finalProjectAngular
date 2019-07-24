@@ -2,7 +2,10 @@
 <div fxLayout="row" >
   <div *ngFor="let cloth of clothArray | async" class="container">
     <!-- <div class="col-lg-1 botm-margin mb-4"></div> -->
-    <app-cloth fxflex="20%" [cloth]="cloth" (deleteEM)="deleteCloth($event)"></app-cloth>
+    <app-cloth  [cloth]="cloth" [isChoosen]="isChoosen"  (deleteEM)="deleteCloth($event)"></app-cloth>
   </div>
-
+  <mat-sidenav-container>
+    <mat-sidenav-content>Main</mat-sidenav-content>
+    <mat-sidenav-content>Main 2</mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

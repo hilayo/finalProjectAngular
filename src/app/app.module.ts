@@ -54,7 +54,9 @@ import { CategoryDialogComponent } from './category-dialog/category-dialog.compo
     ChooseClothViewComponent,
     CategoryDialogComponent
   ],
+
   imports: [
+    MatSidenavModule,
     BrowserModule,
     AppRoutingModule,
     LoginModule,
@@ -79,6 +81,7 @@ import { CategoryDialogComponent } from './category-dialog/category-dialog.compo
      MatButtonModule,
     MatCheckboxModule,
     AngularFontAwesomeModule,
+    MatSidenavModule,
     //server,
     //material
     MatButtonModule,
@@ -90,7 +93,6 @@ import { CategoryDialogComponent } from './category-dialog/category-dialog.compo
     MatListModule,
     MatMenuModule,
     MatSelectModule,
-    MatSidenavModule,
     MatSlideToggleModule,
     MatTabsModule,
     MatToolbarModule,

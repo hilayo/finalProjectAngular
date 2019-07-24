@@ -3,6 +3,13 @@
   flex-wrap: wrap;
   padding: 5px;
   margin: 5px;
-  flex-direction: row;
+  // flex-direction: row;
   border: 1px solid red;
+  justify-content: flex-start ;
+  flex-flow: row;
+}
+
+.box:hover{
+  background-color:lavender;
+  cursor: pointer;
 }

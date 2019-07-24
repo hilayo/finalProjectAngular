@@ -17,13 +17,18 @@
 <p>
   <mat-form-field>
     <input type="password" matInput placeholder="confrimPassword" formControlName="confrimPassword">
-    <mat-error *ngIf="confrimPassword.hasError('mismatch')">Password does not match the confirm password</mat-error>
+    <mat-error *ngIf="confrimPassword.error('mismatch')">Password does not match the confirm password</mat-error>
   </mat-form-field>
 </p>
 
 <!-- <p *ngIf="error" class="error">
   {{ error }}
 </p> -->
+<p>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Name" formControlName="name">
+  </mat-form-field>
+</p>
 <mat-error *ngIf="form.hasError('mismatch')">
   Passwords do not match
 </mat-error>

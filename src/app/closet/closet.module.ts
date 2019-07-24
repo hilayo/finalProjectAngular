@@ -48,6 +48,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 //
 
 
@@ -57,6 +58,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
   entryComponents: [SearchComponent],
 
   bootstrap: [SearchComponent],
+  exports: [MatSidenavModule],
   imports: [
     CommonModule,
     MatAutocompleteModule,
@@ -69,7 +71,6 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     CdkTableModule,
     CdkTreeModule,
     DragDropModule,
-
     MatBadgeModule,
     MatBottomSheetModule,
     MatButtonModule,

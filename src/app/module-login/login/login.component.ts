@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
       this.error = 'User or password are not valid';
       return;
     }
-    // call to server login
     this.slogin
       .callLogin(this.form.value.username, this.form.value.password)
       .subscribe(res => {

@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class ClosetComponent implements OnInit {
   imageArray: string[];
   clothArray:  Observable<any>;
+  isChoosen:boolean = false;
   constructor(private pictureService: DbPicturesService) {}
   loading:boolean=false;
 
