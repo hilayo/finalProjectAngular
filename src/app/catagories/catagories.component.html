@@ -1,50 +1,71 @@
 <!--color -->
-<mat-card>
-<mat-checkbox *ngFor="let color of colorList">{{color}}</mat-checkbox>
-</mat-card>
 
-<!-- Cloth types -->
-<mat-card>
-<mat-form-field>
-    <mat-select placeholder="Cloth types" [formControl]="typesClothForm" multiple>
-      <mat-select-trigger>
-        {{typesClothForm.value ? typesClothForm.value[0].label : ''}}
-        <span *ngIf="typesClothForm.value?.length > 1">
-          (+{{typesClothForm.value.length - 1}} {{typesClothForm.value?.length === 2 ? 'other' : 'others'}})
-        </span>
-      </mat-select-trigger>
-      <mat-option *ngFor="let typeCloth of typeClothList" [value]="typeCloth">{{typeCloth.label}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</mat-card>
+  <!-- <mat-card>
 
-<!-- Season -->
-<mat-card>
-    <mat-form-field>
-        <mat-select placeholder="Season" [formControl]="seasonForm" multiple>
-          <mat-select-trigger>
-            {{seasonForm.value ? seasonForm.value[0].label : ''}}
-            <span *ngIf="seasonForm.value?.length > 1">
-              (+{{seasonForm.value.length - 1}} {{seasonForm.value?.length === 2 ? 'other' : 'others'}})
-            </span>
-          </mat-select-trigger>
-          <mat-option *ngFor="let season of seasonList" [value]="season">{{season.label}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card>
+      <mat-checkbox [formControl]="colorsClothForm" *ngFor="let color of colorList">{{color}}</mat-checkbox>
 
-    <!-- cloth Style -->
-    <mat-card>
-        <mat-form-field>
-            <mat-select placeholder="Cloth Style" [formControl]="clothStyleForm" multiple>
-              <mat-select-trigger>
-                {{clothStyleForm.value ? clothStyleForm.value[0].label : ''}}
-                <span *ngIf="clothStyleForm.value?.length > 1">
-                  (+{{clothStyleForm.value.length - 1}} {{clothStyleForm.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let clothStyle of clothStyleList" [value]="clothStyle">{{clothStyle.label}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </mat-card>
+  </mat-card> -->
+
+  <mat-card>
+      <mat-form-field>
+          <mat-select  placeholder="Cloth colors" [formControl]="colorsClothForm" multiple >
+            <mat-select-trigger>
+              {{colorsClothForm.value ? colorsClothForm.value[0] : ''}}
+              <span *ngIf="typesClothForm.value?.length > 1">
+                (+{{colorsClothForm.value.length - 1}} {{colorsClothForm.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let colorCloth of colorList" [value]="colorCloth">{{colorCloth}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+
+
+  <!-- Cloth types -->
+  <mat-card>
+  <mat-form-field>
+      <mat-select  placeholder="Cloth types" [formControl]="typesClothForm" multiple >
+        <mat-select-trigger>
+          {{typesClothForm.value ? typesClothForm.value[0] : ''}}
+          <span *ngIf="typesClothForm.value?.length > 1">
+            (+{{typesClothForm.value.length - 1}} {{typesClothForm.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let typeCloth of typeClothList" [value]="typeCloth">{{typeCloth}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+
+  <!-- Season -->
+  <mat-card>
+      <mat-form-field>
+          <mat-select placeholder="Season" (valueChange)="seasonSelected($event)" [formControl]="seasonForm" multiple >
+            <mat-select-trigger>
+              {{seasonForm.value ? seasonForm.value[0] : ''}}
+              <span *ngIf="seasonForm.value?.length > 1">
+                (+{{seasonForm.value.length - 1}} {{seasonForm.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let season of seasonList" [value]="season">{{season}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+
+      <!-- cloth Style -->
+      <mat-card>
+          <mat-form-field>
+              <mat-select  placeholder="Cloth Style" [formControl]="clothStyleForm" multiple>
+                <mat-select-trigger>
+                  {{clothStyleForm.value ? clothStyleForm.value[0] : ''}}
+                  <span *ngIf="clothStyleForm.value?.length > 1">
+                    (+{{clothStyleForm.value.length - 1}} {{clothStyleForm.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let clothStyle of clothStyleList" [value]="clothStyle">{{clothStyle}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-card>
+          <button mat-fab color="primary" (click)="search($event)">
+              <mat-icon>search</mat-icon>
+          </button>
 
