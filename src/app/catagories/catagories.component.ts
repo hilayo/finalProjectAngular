@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Cloth } from '../cloth/Cloth';
 
@@ -55,6 +55,8 @@ const TYPE_ITEM_CATEGORY =[
 //   @Output() getSelected: EventEmitter<Categories> = new EventEmitter();
 //   selectedCategories: Categories = new Categories();
   @Input() cloth: Cloth;
+  @Output() submitForm= new EventEmitter();
+
   seasonList = SEASONS_CATEGORY;
   typeClothList=TYPE_ITEM_CATEGORY;
   clothStyleList=CLOTH_STYLE_CATEGORY;
@@ -64,15 +66,49 @@ const TYPE_ITEM_CATEGORY =[
   typesClothForm:FormControl = new FormControl();
   seasonForm:FormControl = new FormControl();
   clothStyleForm:FormControl = new FormControl();
+  from:FormGroup=new FormGroup({
+    colorsClothForm: this.colorsClothForm,
+    typesClothForm: this.typesClothForm,
+    seasonForm: this.seasonForm,
+    clothStyleForm: this.clothStyleForm
+  });
+
+
 
 
 constructor() {
 //  this.selectedCategories = { color: [], style: [], type: [], season: [] };
-   //const clothSeason = SEASONS_CATEGORY.filter(c => this.cloth.includes(c.key));
-   // this.seasonForm.setValue(clothSeason);
 
+
+//  this.removeFavorite.emit(cloth);
   }
   ngOnInit() {
+
+    /// from pop up dialog
+    if(!!this.cloth){
+      //set cloth categories:
+        //seasons
+        const clothSeason = !!this.cloth.seasons ? SEASONS_CATEGORY.filter(c => this.cloth.seasons.includes(c.key)) : null;
+         this.seasonForm.setValue(clothSeason);
+
+         //type Cloth
+         const clothType = !!this.cloth.typeOfItem? TYPE_ITEM_CATEGORY.filter(c => this.cloth.typeOfItem.includes(c.key)) : null;
+         this.typesClothForm.setValue(clothType);
+
+         //cloth Style
+         const clothStyle = !!this.cloth.clothStyle ? CLOTH_STYLE_CATEGORY.filter(c => this.cloth.clothStyle.includes(c.key)) : null;
+         this.clothStyleForm.setValue(clothStyle);
+
+         //color
+         const color = !!this.cloth.color ? COLOR_CATEGORY.filter(c => this.cloth.color.includes(c.key)) : null;
+         this.colorsClothForm.setValue(color);
+    }
+
+    this.from.valueChanges.subscribe(value=>{
+   this.submitForm.emit(this.from);
+    });
+
+
    // this.colorList = Object.keys(COLOR_CATEGORY).map(key => COLOR_CATEGORY[key]).filter(value => typeof value === 'string');
     // this.colorList = Object.keys(COLOR_CATEGORY)
     //   .map(key => COLOR_CATEGORY[key])

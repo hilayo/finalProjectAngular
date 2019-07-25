@@ -2,8 +2,6 @@ import { Injectable } from "@angular/core";
 import { Cloth } from "../cloth/Cloth";
 import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
-// import {Subject} from "rxjs/Subject";
-// import {Observable} from "rxjs/Observable";
 
 const UID = function() {
   // Math.random should be unique because of its seeding algorithm.
@@ -40,7 +38,6 @@ export class DbPicturesService {
 
   saveCloth(cloth: Cloth) {
     this.http.post(this.url, cloth).subscribe(data => {
-      debugger;
       this._clothsArray.getValue().push(cloth);
       this._clothsArray.next(this._clothsArray.getValue());
     });
@@ -85,6 +82,21 @@ export class DbPicturesService {
       console.log("delete success");
     });
   }
+
+  updateCloth(cloth:Cloth){
+    console.log(cloth);
+    this.http.put(`${this.url}/${cloth.id}`, cloth).subscribe(data => {
+      // let clothsArray: Cloth[] = this._clothsArray.getValue();
+      // clothsArray.forEach((item, index) => {
+      //   if (item.id === id) {
+      //     clothsArray.splice(index, 1);
+      //   }
+      // });
+      // this._clothsArray.next(clothsArray);
+      console.log("update success");
+    });
+  }
+
   search(selected) {
     console.log(selected);
     let clothsArray: Cloth[] = this._clothsArray.getValue();
@@ -98,7 +110,7 @@ export class DbPicturesService {
         cloth.seasons.filter(s => s == selected.seasons.filter(se => (se = s)))
         )
         .filter((cloth)=>
-        cloth.kindCloth.filter(k => k == selected.kindCloth.filter(kind => (kind = k))))
+        cloth.clothStyle.filter(k => k == selected.clothStyle.filter(kind => (kind = k))))
         .filter((cloth)=>
         cloth.typeOfItem.filter(t => t == selected.typeOfItem.filter(type => (type = t))))
 

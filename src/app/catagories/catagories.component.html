@@ -6,35 +6,38 @@
 
   </mat-card> -->
 
+<!--color -->
   <mat-card>
-    <mat-form-field>
-        <mat-select  placeholder="Cloth colors" [formControl]="colorsClothForm" multiple >
-          <mat-select-trigger>
-            {{colorsClothForm.value ? colorsClothForm.value[0].lable : ''}}
-            <span *ngIf="typesClothForm.value?.length > 1">
-              (+{{colorsClothForm.value.length - 1}} {{colorsClothForm.value?.length === 2 ? 'other' : 'others'}})
-            </span>
-          </mat-select-trigger>
-          <mat-option *ngFor="let colorCloth of colorList" [value]="colorCloth">{{colorCloth.label}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card>
+      <mat-form-field>
+          <mat-select placeholder="Cloth colors"  [formControl]="colorsClothForm" multiple >
+            <mat-select-trigger>
+              {{colorsClothForm.value ? colorsClothForm.value[0].label : ''}}
+              <span *ngIf="colorsClothForm.value?.length > 1">
+                (+{{colorsClothForm.value.length - 1}} {{colorsClothForm.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let color of colorList" [value]="color">{{color.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+
 
 
 <!-- Cloth types -->
-<mat-card>
-<mat-form-field>
-    <mat-select  placeholder="Cloth types" [formControl]="typesClothForm" multiple >
-      <mat-select-trigger>
-        {{typesClothForm.value ? typesClothForm.value[0].lable : ''}}
-        <span *ngIf="typesClothForm.value?.length > 1">
-          (+{{typesClothForm.value.length - 1}} {{typesClothForm.value?.length === 2 ? 'other' : 'others'}})
-        </span>
-      </mat-select-trigger>
-      <mat-option *ngFor="let typeCloth of typeClothList" [value]="typeCloth">{{typeCloth.label}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</mat-card>
+      <mat-card>
+          <mat-form-field>
+              <mat-select placeholder="Cloth types"  [formControl]="typesClothForm" multiple >
+                <mat-select-trigger>
+                  {{typesClothForm.value ? typesClothForm.value[0].label : ''}}
+                  <span *ngIf="typesClothForm.value?.length > 1">
+                    (+{{typesClothForm.value.length - 1}} {{typesClothForm.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let typeCloth of typeClothList" [value]="typeCloth">{{typeCloth.label}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-card>
+
 
 <!-- Season -->
 <mat-card>
