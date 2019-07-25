@@ -30,6 +30,7 @@ export class DbPicturesService {
     const cloth: Cloth = {
       id: UID(),
       image: imageBase64,
+      isImagebase64:true,
       color: null,
       typeOfItem: null
     };
