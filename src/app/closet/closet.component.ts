@@ -18,11 +18,10 @@ export class ClosetComponent implements OnInit {
     this.clothArray = this.pictureService.getCloths();
   }
   deleteCloth(id: string) {
-    debugger;
     this.pictureService.deletePicture(id);
   }
   search(selectedCategories) {
-    console.log(selectedCategories)
+    console.log(selectedCategories);
 
   }
 }

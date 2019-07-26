@@ -24,9 +24,9 @@ export class ClothComponent implements OnInit {
 
   openCatagories(){
     let dialogRef = this.dialog.open(CategoryDialogComponent, {
-      height: '400px',
-      width: '600px',
-      data:{clothId:this.cloth}
+      height: '600px',
+      width: '390px',
+      data:this.cloth
     });
   }
   deleteItem(id:string){
