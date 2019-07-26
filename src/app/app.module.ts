@@ -38,6 +38,7 @@ import {
   MatTabsModule
 } from '@angular/material';
 import { CategoryDialogComponent } from './category-dialog/category-dialog.component';
+import { SearchByCatagoriesComponent } from './catagories/search-by-catagories/search-by-catagories.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { CategoryDialogComponent } from './category-dialog/category-dialog.compo
     SearchComponent,
     WeatherComponent,
     ChooseClothViewComponent,
-    CategoryDialogComponent
+    CategoryDialogComponent,
+    SearchByCatagoriesComponent
   ],
 
   imports: [

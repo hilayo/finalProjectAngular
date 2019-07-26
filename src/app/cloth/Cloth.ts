@@ -5,10 +5,10 @@ export class Cloth {
   id: string;
   image: String;
   isImagebase64:boolean;
-  color: string[];
-  clothStyle?: string[];
-  typeOfItem: string[];
-  seasons?: string[];
+  color: string[] = new Array();
+  clothStyle: string[]= new Array();
+  typeOfItem: string[]= new Array();
+  seasons: string[]= new Array();
 
 
   constructor(userId:string,id: string, image: String,

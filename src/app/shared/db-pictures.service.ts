@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
 import { tap, map } from 'rxjs/operators';
 
-const UID = function() {
+const UID = function () {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
@@ -19,7 +19,7 @@ const UID = function() {
   providedIn: "root"
 })
 export class DbPicturesService {
-private choosenClothesArray: Cloth[] = new Array();
+  private choosenClothesArray: Cloth[] = new Array();
 
   url: string = "http://localhost:3000/clothes";
 
@@ -27,17 +27,19 @@ private choosenClothesArray: Cloth[] = new Array();
   constructor(private http: HttpClient) {
     this.loadInitialData();
   }
-     name:string;
-     userId:string;
+  name: string;
+  userId: string;
 
   addPicture(imageBase64: any) {
     const cloth: Cloth = {
-     userId:this.userId,
+      userId: this.userId,
       id: UID(),
       image: imageBase64,
-      isImagebase64:true,
+      isImagebase64: true,
       color: null,
-      typeOfItem: null
+      typeOfItem: null,
+      clothStyle: new Array(),
+      seasons: new Array(),
     };
     this.saveCloth(cloth);
   }
@@ -54,17 +56,17 @@ private choosenClothesArray: Cloth[] = new Array();
   }
 
 
-  addToChoosenClothes(cloth:Cloth){
-   this.choosenClothesArray.push(cloth);
+  addToChoosenClothes(cloth: Cloth) {
+    this.choosenClothesArray.push(cloth);
   }
   getChoosenClothes() {
-   return this.choosenClothesArray;
+    return this.choosenClothesArray;
   }
 
-//   deletePicture(id:string){
-//     console.log(id)
-// ;    this.http.delete( `${this.url}/${id}`).subscribe(data=>console.log("delete success"));
-//   }
+  //   deletePicture(id:string){
+  //     console.log(id)
+  // ;    this.http.delete( `${this.url}/${id}`).subscribe(data=>console.log("delete success"));
+  //   }
   //   deletePicture(id:string){
   //     console.log(id)
   // ;    this.http.delete( `${this.url}/${id}`).subscribe(data=>console.log("delete success"));
@@ -91,7 +93,7 @@ private choosenClothesArray: Cloth[] = new Array();
     });
   }
 
-  updateCloth(cloth:Cloth){
+  updateCloth(cloth: Cloth) {
     console.log(cloth);
     this.http.put(`${this.url}/${cloth.id}`, cloth).subscribe(data => {
       // let clothsArray: Cloth[] = this._clothsArray.getValue();
@@ -105,48 +107,74 @@ private choosenClothesArray: Cloth[] = new Array();
     });
   }
 
-  search(selected) {
-    console.log(selected);
-    let clothsArray: Cloth[] = this._clothsArray.getValue();
+  search(color: string[], clothStyle: string[], seasons: string[], typeOfItem: string[]) {
+    debugger
+    console.log(color, clothStyle, seasons, typeOfItem);
+    //let clothsArray: Cloth[] = this._clothsArray.getValue();
 
-    let results = this._clothsArray
-      .getValue()
-      .filter(cloth =>
-        cloth.color.filter(c => c == selected.color.filter(col => (col = c)))
-        )
-        .filter((cloth)=>
-        cloth.seasons.filter(s => s == selected.seasons.filter(se => (se = s)))
-        )
-        .filter((cloth)=>
-        cloth.clothStyle.filter(k => k == selected.clothStyle.filter(kind => (kind = k))))
-        .filter((cloth)=>
-        cloth.typeOfItem.filter(t => t == selected.typeOfItem.filter(type => (type = t))))
+    let results = this._clothsArray.getValue();
+    console.log(results);
+    if (results != null) {
+      if (color.length > 0) {
+        results = results.filter(cloth =>
+          cloth.color.filter(c => color.includes(c)));
 
+      }
+      if (clothStyle.length > 0) {
+        results = results
+          .filter(cloth =>
+            cloth.clothStyle.filter(c => clothStyle.includes(c)));
+      }
+      if (seasons.length > 0) {
+        results = results
+          .filter(cloth =>
+            cloth.seasons.filter(c => seasons.includes(c)));
+      }
+      if (typeOfItem.length > 0) {
+        results = results
+          .filter(cloth =>
+            cloth.typeOfItem.filter(c => typeOfItem.includes(c)));
+      }
+      //   .filter((cloth) =>
+      //   cloth.seasons.filter(c => !seasons.includes(c)))
+      // .filter((cloth) =>
+      //   cloth.seasons.filter(c => !seasons.includes(c)))
+      // .filter((cloth) =>
+      //   cloth.clothStyle.filter(c => !clothStyle.includes(c)))
+      // .filter((cloth) =>
+      // cloth.typeOfItem.filter(c => !typeOfItem.includes(c)))
       // [clothsArray[2]];
+    }
     this._clothsArray.next(results);
   }
 
 
-  getName():string{
+  getName(): string {
     return this.name;
   }
-  setName(name:string):void{
+  setName(name: string): void {
     this.name = name;
   }
 
-  getUserId():string{
+  getUserId(): string {
     return this.userId;
   }
-  setUserId(userId:string):void{
+  setUserId(userId: string): void {
     this.userId = userId;
   }
 
-  initialArray(){
-    this.http.get<Cloth[]>(this.url).pipe(tap(x => console.log(x)),
-     map((x: Cloth[]) => x.filter((y: Cloth) => y.userId === this.userId )),
-    tap(x => console.log(x))).
-    subscribe(data=> {this._clothsArray.next(data),
-        err => console.log("Error retrieving Todos");
-    });
+  initialArray() {
+    this.http.get<Cloth[]>(this.url)
+    .subscribe(data => {
+          this._clothsArray.next(data),
+            err => console.log("Error retrieving Todos");});
+
+    // .pipe(tap(x => console.log(x)),
+    //   map((x: Cloth[]) => x.filter((y: Cloth) => y.userId === this.userId)),
+    //   tap(x => console.log(x))).
+    //   subscribe(data => {
+    //     this._clothsArray.next(data),
+    //       err => console.log("Error retrieving Todos");
+    //   });
   }
 }
