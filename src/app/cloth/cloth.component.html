@@ -26,8 +26,11 @@
       <mat-icon>delete</mat-icon>
     </button>
     <button *ngIf="!isChoosen" mat-fab color="primary" (click)="choose()">
+        <mat-icon>search</mat-icon>
+      </button>
+    <!-- <button *ngIf="!isChoosen" mat-fab color="primary" (click)="choose()">
       <mat-icon>search</mat-icon>
-    </button>
+    </button> -->
     <button *ngIf="!isChoosen" mat-fab color="primary" (click)="choose(cloth)">
       <mat-icon>add</mat-icon>
     </button>
