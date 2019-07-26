@@ -1,13 +1,14 @@
 <mat-toolbar color="primary">
   <ul>
+    <!-- <li> <a [routerLink]="['/homePage', name]" routerLinkActive="active">HomePage</a></li> -->
     <li> <a routerLink="/homePage" routerLinkActive="active">HomePage</a></li>
     <li> <a routerLink="/login" routerLinkActive="active">sign in</a></li>
     <span style="  flex: 1 1 auto;"></span>
     <li style="direction: rtl;"> <a routerLink="/signUp" routerLinkActive="active">sign Up</a></li>
-    <li> <a routerLink="/closet" routerLinkActive="active">closet</a></li>
-    <li> <a routerLink="/uploadPicture" routerLinkActive="active">camera</a></li>
-    <li> <a routerLink="/categories" routerLinkActive="active">categories</a></li>
-    <li> <a routerLink="/favorites" routerLinkActive="active">favorites</a></li>
+    <li> <a routerLink="/homePage/closet" routerLinkActive="active">closet</a></li>
+    <li> <a routerLink="/homePage/uploadPicture" routerLinkActive="active">camera</a></li>
+    <li> <a routerLink="/homePage/categories" routerLinkActive="active">categories</a></li>
+    <li> <a routerLink="/homePage/favorites" routerLinkActive="active">favorites</a></li>
     <!-- <button id="openCamera" (click)="savePicture();">camera</button> -->
 
   </ul>

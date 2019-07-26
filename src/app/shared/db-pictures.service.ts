@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Cloth } from "../cloth/Cloth";
 import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
+import { tap, map } from 'rxjs/operators';
 
 const UID = function() {
   // Math.random should be unique because of its seeding algorithm.
@@ -18,16 +19,20 @@ const UID = function() {
   providedIn: "root"
 })
 export class DbPicturesService {
-  url:string="http://localhost:3000/clothes";
+private choosenClothesArray: Cloth[] = new Array();
 
-  private choosenClothesArray: Cloth[] = new Array();
+  url: string = "http://localhost:3000/clothes";
+
   private _clothsArray: BehaviorSubject<Cloth[]> = new BehaviorSubject(null);
   constructor(private http: HttpClient) {
     this.loadInitialData();
   }
+     name:string;
+     userId:string;
 
   addPicture(imageBase64: any) {
     const cloth: Cloth = {
+     userId:this.userId,
       id: UID(),
       image: imageBase64,
       isImagebase64:true,
@@ -66,10 +71,12 @@ export class DbPicturesService {
   //   }
 
   loadInitialData() {
-    this.http.get<Cloth[]>(this.url).subscribe(data => {
-      this._clothsArray.next(data),
-        err => console.log("Error retrieving Todos");
-    });
+    this.initialArray();
+
+    // this.http.get<Cloth[]>(this.url).
+    // subscribe(data=> {this._clothsArray.next(data),
+    //     err => console.log("Error retrieving Todos");
+    // });
   }
   deletePicture(id: string) {
     this.http.delete(`${this.url}/${id}`).subscribe(data => {
@@ -117,5 +124,29 @@ export class DbPicturesService {
 
       // [clothsArray[2]];
     this._clothsArray.next(results);
+  }
+
+
+  getName():string{
+    return this.name;
+  }
+  setName(name:string):void{
+    this.name = name;
+  }
+
+  getUserId():string{
+    return this.userId;
+  }
+  setUserId(userId:string):void{
+    this.userId = userId;
+  }
+
+  initialArray(){
+    this.http.get<Cloth[]>(this.url).pipe(tap(x => console.log(x)),
+     map((x: Cloth[]) => x.filter((y: Cloth) => y.userId === this.userId )),
+    tap(x => console.log(x))).
+    subscribe(data=> {this._clothsArray.next(data),
+        err => console.log("Error retrieving Todos");
+    });
   }
 }

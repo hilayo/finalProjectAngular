@@ -1,7 +1,16 @@
+
       :host {
         display: flex;
         justify-content: center;
         margin: 100px 0px;
+        background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
+        /* Full height */
+        height: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+
       }
 
       .mat-form-field {
@@ -18,14 +27,35 @@
         color: primary;
       }
 
+
       .error {
         padding: 16px;
         width: 300px;
-        color: white;
-        background-color: rgb(109, 5, 5);
+        color: rgb(207, 15, 15);
+        font-size: large;
+        border: 1px solid rgb(207, 15, 15);
+
       }
 
-      // .button {
-      //   display: flex;
-      //   justify-content: flex-end;
-      // }
+
+
+      button{
+        margin: 2%;
+        margin-top: 0%;
+    }
+
+    h1{
+        margin: 0;
+    }
+
+    mat-radio-button{
+        margin: 15px;
+    }
+    mat-form-field{
+      width: 300px;
+  }
+  .user{
+    text-align: center;
+}
+
+

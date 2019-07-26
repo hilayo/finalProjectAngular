@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { style } from "@angular/animations";
+import { DbPicturesService } from '../shared/db-pictures.service';
 import { Cloth } from '../cloth/Cloth';
 
 const COLOR_CATEGORY =[
@@ -54,8 +56,14 @@ const TYPE_ITEM_CATEGORY =[
  export class CatagoriesComponent implements OnInit {
 //   @Output() getSelected: EventEmitter<Categories> = new EventEmitter();
 //   selectedCategories: Categories = new Categories();
-  @Input() cloth: Cloth;
   @Output() submitForm= new EventEmitter();
+
+
+  constructor(private pictureService: DbPicturesService) {
+    //this.selectedCategories = { color: [], style: [], type: [], season: [] };
+  }
+
+  @Input() cloth:Cloth;
 
   seasonList = SEASONS_CATEGORY;
   typeClothList=TYPE_ITEM_CATEGORY;
@@ -76,12 +84,6 @@ const TYPE_ITEM_CATEGORY =[
 
 
 
-constructor() {
-//  this.selectedCategories = { color: [], style: [], type: [], season: [] };
-
-
-//  this.removeFavorite.emit(cloth);
-  }
   ngOnInit() {
 
     /// from pop up dialog

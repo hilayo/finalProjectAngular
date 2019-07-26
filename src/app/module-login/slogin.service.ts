@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpClient,HttpHeaders} from '@angular/common/http';
-import { Users } from './users';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from './users';
+import { tap, map } from 'rxjs/operators';
 
-const UID = function() {
+const UID = function () {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
@@ -20,31 +21,37 @@ const UID = function() {
 })
 export class SLoginService {
 
-  constructor(private http:HttpClient) {
+  constructor(private http: HttpClient) {
 
   }
-path:string = 'https://reqres.in/api/login';
- url:string="http://localhost:3000/users";
+  path: string = 'https://reqres.in/api/login';
+  url: string = "http://localhost:3000/users";
+  x
 
-  callLoginSignUp(user:string,password:string,name:string) : Observable<Users>
-  {
+  callLoginSignUp(user: string, password: string, name: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'Authorization': 'my-auth-token',
-        'Access-Control-Allow-Origin':"*"
+        'Access-Control-Allow-Origin': "*"
       })
     };
 
-      let params = {
-          'id' :UID,
-         'email' : user,
-         'password' : password,
-         'name': name
-     };
-    return this.http.post<Users>(this.url , params , httpOptions);
-}
-callLogin(user:string,password:string) : Observable<Users>{
-  return this.http.get<Users>(this.url);
-}
+    let params = {
+      'id': UID,
+      'email': user,
+      'password': password,
+      'name': name
+    };
+    return this.http.post<User>(this.url, params, httpOptions);
+  }
+
+  callLogin(email: string, password: string): Observable<User> {
+       return this.http.get<User[]>(this.url ).pipe(
+         tap(x => console.log(x)),
+         map((x: User[]) => x.find((y: User) => y.email === email && y.password === password)),
+         tap(x => console.log(x)));
+     }
+
+
 }

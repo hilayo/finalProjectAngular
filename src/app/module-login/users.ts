@@ -1,7 +1,7 @@
 
 
 
-export class Users {
+export class User {
   id:string;
   email:string;
   password:string;

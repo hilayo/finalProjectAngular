@@ -1,0 +1,6 @@
+<mat-card>
+    <div *ngFor="let selectCloth of selectClothes" class="container"  style="display: flex;" fxLayout="row wrap">
+      <app-cloth fxflex="50%"  [cloth]="selectCloth" [isChoosen]="isChoosen" (removeFavorite)="removeFromFavorites($event)" ></app-cloth>
+    </div>
+
+    <mat-card>

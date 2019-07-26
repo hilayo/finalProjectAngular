@@ -34,7 +34,7 @@
     <button *ngIf="!isChoosen" mat-fab color="primary" (click)="choose(cloth)">
       <mat-icon>add</mat-icon>
     </button>
-    <button *ngIf="isChoosen" mat-fab color="primary" (click)="removeFromFavorite(cloth)">
+    <button *ngIf="isChoosen" mat-fab color="accent" (click)="removeFromFavorite(cloth)">
       <mat-icon>remove</mat-icon>
     </button>
   </mat-card-actions>
