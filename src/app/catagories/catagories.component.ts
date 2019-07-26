@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { style } from "@angular/animations";
 import { DbPicturesService } from '../shared/db-pictures.service';
+import { Cloth } from '../cloth/Cloth';
 
 export enum COLOR_CATEGORY {
   RED = 1,
@@ -55,6 +56,7 @@ export class CatagoriesComponent implements OnInit {
   @Output() getSelected: EventEmitter<Categories> = new EventEmitter();
   selectedCategories: Categories = new Categories();
 
+
   constructor(private pictureService: DbPicturesService) {
     this.selectedCategories = { color: [], style: [], type: [], season: [] };
   }
@@ -67,6 +69,7 @@ export class CatagoriesComponent implements OnInit {
   colorList: String[];
   seasonList: string[];
   clothStyleList: string[];
+  @Input() cloth:Cloth;
 
   ngOnInit() {
     this.colorList = Object.keys(COLOR_CATEGORY)

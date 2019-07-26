@@ -1,43 +1,61 @@
+
+<div class="new_user">
+
+
 <mat-card  color="primary">
-  <mat-card-title>Sign up</mat-card-title>
+  <mat-card-title color="primary">Sign up</mat-card-title>
 <mat-card-content>
 <form [formGroup]="form" (ngSubmit)="submit()">
 <p>
   <mat-form-field >
-    <input color="" type="email" matInput placeholder="Username" formControlName="username">
+    <input color="primary" type="email" matInput placeholder="Username" formControlName="username">
+    <mat-error *ngIf="form.get('username').hasError('required')">
+      Please enter  email
+    </mat-error>
+
   </mat-form-field>
 </p>
 
 <p>
   <mat-form-field>
-    <input type="password" matInput placeholder="Password" formControlName="password">
+    <input type="password"   matInput placeholder="Password" formControlName="password">
+    <mat-error *ngIf="form.get('password').hasError('required')">
+      Please enter  password
+    </mat-error>
   </mat-form-field>
+
 </p>
 
 <p>
   <mat-form-field>
     <input type="password" matInput placeholder="confrimPassword" formControlName="confrimPassword">
-    <mat-error *ngIf="confrimPassword.error('mismatch')">Password does not match the confirm password</mat-error>
+    <mat-error *ngIf="form.get('confrimPassword').hasError('mismatch')">
+      Password does not match the confirm password
+    </mat-error>
+    <mat-error *ngIf="form.get('confrimPassword').hasError('required')">
+      Please enter  confirm password
+    </mat-error>
+
   </mat-form-field>
 </p>
 
-<!-- <p *ngIf="error" class="error">
-  {{ error }}
-</p> -->
+
 <p>
   <mat-form-field>
     <input type="text" matInput placeholder="Name" formControlName="name">
+    <mat-error *ngIf="form.get('name').hasError('required')">
+      Please enter name
+    </mat-error>
   </mat-form-field>
 </p>
 <mat-error *ngIf="form.hasError('mismatch')">
   Passwords do not match
 </mat-error>
 
-<div class="button">
-  <button [disabled]="!this.form.valid" type="submit"  color="primary" mat-raised-button >next</button>
-</div>
 
+  <button  mat-raised-button color="primary" [disabled]="!this.form.valid" type="submit"  color="primary" mat-raised-button >next</button>
 
 </form>
 </mat-card-content>
 </mat-card>
+</div>

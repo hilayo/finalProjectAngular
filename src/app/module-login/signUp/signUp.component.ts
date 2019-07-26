@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { error } from '@angular/compiler/src/util';
 import { SLoginService } from '../slogin.service';
+import { DbPicturesService } from 'src/app/shared/db-pictures.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,17 +11,17 @@ import { SLoginService } from '../slogin.service';
   styleUrls: ['./signUp.component.scss']
 })
 export class signUpComponent implements OnInit {
-  @Input() errors: string | null;
+  @Input() error: string | null;
   @Output() submitEM = new EventEmitter();
   form: FormGroup;
 
-  constructor(private slogin: SLoginService , private fb:FormBuilder ) { }
+  constructor(private slogin: SLoginService ,private router: Router, private fb:FormBuilder,private dbService:DbPicturesService ) { }
 
   static confrimPasswordValidator (form: FormGroup){
 
     var password: string = form.controls.password.value;
     var confrimPassword: string =form.controls.confrimPassword.value ;
-//debugger;
+
     if(password!==confrimPassword)
     {
       form.controls.confrimPassword.setErrors({ mismatch: true });
@@ -51,18 +53,18 @@ export class signUpComponent implements OnInit {
 
 
   submit() {
-    alert(this.form.invalid);
-    if (this.form.invalid) {
-        alert(this.form.errors)
-      this.errors = 'User or password are not valid';
-      return;
-    }
-    // call to server login
-    alert(this.form.value.name +"value");
     this.slogin
       .callLoginSignUp(this.form.value.username, this.form.value.password, this.form.value.name)
       .subscribe(res => {
-        alert(res);
+        if(!res){
+          this.error='fail sign up';
+          return;
+        }
+        else{
+        this.dbService.setName(this.form.value.name);
+        this.dbService.setUserId(res.id) ;
+        this.router.navigate(['/homePage']);
+      }
       });
   }
 

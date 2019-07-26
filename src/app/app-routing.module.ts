@@ -10,14 +10,16 @@ import { FavoritesComponent } from './favorites/favorites.component';
 const routes: Routes = [
 
   { path: '', redirectTo: 'homePage', pathMatch: 'full' },
-  { path: 'uploadPicture',
-    loadChildren: './upload-picture/upload-picture.module#UploadPictureModule' },
+  {
+    path: 'uploadPicture',
+    loadChildren: './upload-picture/upload-picture.module#UploadPictureModule'
+  },
   { path: 'login', component: LoginComponent },
-  { path: 'homePage', component: HomepageComponent },
+    { path: 'homePage', component: HomepageComponent },
   { path: 'signUp', component: signUpComponent },
   { path: 'closet', component: ClosetComponent },
   { path: 'categories', component: CatagoriesComponent },
-  {path: 'favorites' ,component:FavoritesComponent}
+  { path: 'favorites', component: FavoritesComponent }
 
 ];
 

@@ -107,4 +107,3 @@ import { CategoryDialogComponent } from './category-dialog/category-dialog.compo
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-

@@ -1,6 +1,7 @@
 
 
 export class Cloth {
+  userId:string;
   id: string;
   image: String;
   color: string[];
@@ -9,9 +10,10 @@ export class Cloth {
   seasons?: string[];
 
 
-  constructor(id: string, image: String,
+  constructor(userId:string,id: string, image: String,
     color: string[], typeOfItem: string[], kindCloth?: string[],
-    seasons?: string[], ) {
+    seasons?: string[]) {
+    this.userId=userId;
     this.id = id;
     this.image = image;
     this.color = color;

@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serve-server": "json-server --watch ./src/db/clothes.json"
+    "serve-server": "json-server --watch ./src/db/clothes.json",
+    "s:s": "npm run serve-server"
   },
   "private": true,
   "dependencies": {

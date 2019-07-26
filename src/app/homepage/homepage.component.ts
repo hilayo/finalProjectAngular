@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DbPicturesService } from '../shared/db-pictures.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  public name: string;
+  // constructor(private route: ActivatedRoute) {
+  //  this.name = this.route.snapshot.params['name'] as string;
+  constructor(private dbService:DbPicturesService){
+
+
+    // this.route.params.subscribe(params => console.log(params));
+  }
 
   ngOnInit() {
+   this.name= this.dbService.getName();
   }
 
 }
