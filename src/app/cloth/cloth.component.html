@@ -1,40 +1,21 @@
 
-<!-- <mat-card >
-              <img mat-card-image [src]="'data:image/png;base64,' + ImageSrc"  >
-              <mat-card-actions >
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-              </mat-card-actions>
-            </mat-card>
- -->
-
-<mat-card class="box">
-  <mat-card-header>
-    <mat-card-title>title</mat-card-title>
-    <mat-card-subtitle>subtitle</mat-card-subtitle>
-  </mat-card-header>
+<mat-card >
   <mat-card-content>
     <img *ngIf="cloth.isImagebase64" mat-card-image [src]="'data:image/png;base64,' + cloth.image" />
     <img *ngIf="!cloth.isImagebase64" mat-card-image [src]="cloth.image" />
 
-  </mat-card-content>
-  <mat-card-actions>
-    <button *ngIf="!isChoosen" mat-fab color="primary" (click)="openCatagories()">
+  </mat-card-content >
+  <mat-card-actions fxLayout="column" fxFlex="20%" >
+    <button *ngIf="!isChoosen" mat-mini-fab color="primary" (click)="openCatagories()">
       <mat-icon>class</mat-icon>
     </button>
-    <button *ngIf="!isChoosen" mat-fab color="primary" (click)="deleteItem(cloth.id)">
+    <button *ngIf="!isChoosen" mat-mini-fab color="primary" (click)="deleteItem(cloth.id)">
       <mat-icon>delete</mat-icon>
     </button>
-    <button *ngIf="!isChoosen" mat-fab color="primary" (click)="choose()">
-        <mat-icon>search</mat-icon>
-      </button>
-    <!-- <button *ngIf="!isChoosen" mat-fab color="primary" (click)="choose()">
-      <mat-icon>search</mat-icon>
-    </button> -->
-    <button *ngIf="!isChoosen" mat-fab color="primary" (click)="choose(cloth)">
+    <button *ngIf="!isChoosen" mat-mini-fab color="primary" (click)="choose(cloth)">
       <mat-icon>add</mat-icon>
     </button>
-    <button *ngIf="isChoosen" mat-fab color="accent" (click)="removeFromFavorite(cloth)">
+    <button *ngIf="isChoosen" mat-mini-fab color="accent" (click)="removeFromFavorite(cloth)">
       <mat-icon>remove</mat-icon>
     </button>
   </mat-card-actions>

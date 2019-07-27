@@ -34,14 +34,14 @@ export class signUpComponent implements OnInit {
   ngOnInit(): void {
     this.form=this.fb.group(
       {
-        'username': ['', [
+        'email': ['', [
           Validators.required,
           Validators.min(1),
           Validators.email,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
           'password': ['', [Validators.required, Validators.min(1)]],
           'confrimPassword': ['',  [Validators.required, Validators.min(1)]],
-          'name':['',[Validators.required, Validators.min(1)]]
+          'userName':['',[Validators.required, Validators.min(1)]]
 
       },
      {validator : signUpComponent.confrimPasswordValidator });
@@ -54,14 +54,14 @@ export class signUpComponent implements OnInit {
 
   submit() {
     this.slogin
-      .callLoginSignUp(this.form.value.username, this.form.value.password, this.form.value.name)
+      .callLoginSignUp(this.form.value.email, this.form.value.password, this.form.value.userName)
       .subscribe(res => {
         if(!res){
           this.error='fail sign up';
           return;
         }
         else{
-        this.dbService.setName(this.form.value.name);
+        this.dbService.setName(this.form.value.userName);
         this.dbService.setUserId(res.id) ;
         this.router.navigate(['/homePage']);
       }

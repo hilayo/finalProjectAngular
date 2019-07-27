@@ -7,8 +7,8 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
 <p>
   <mat-form-field >
-    <input color="primary" type="email" matInput placeholder="Username" formControlName="username">
-    <mat-error *ngIf="form.get('username').hasError('required')">
+    <input color="primary" type="email" matInput placeholder="email" formControlName="email">
+    <mat-error *ngIf="form.get('email').hasError('required')">
       Please enter  email
     </mat-error>
 
@@ -41,8 +41,8 @@
 
 <p>
   <mat-form-field>
-    <input type="text" matInput placeholder="Name" formControlName="name">
-    <mat-error *ngIf="form.get('name').hasError('required')">
+    <input type="text" matInput placeholder="userName" formControlName="userName">
+    <mat-error *ngIf="form.get('userName').hasError('required')">
       Please enter name
     </mat-error>
   </mat-form-field>
