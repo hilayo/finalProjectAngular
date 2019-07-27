@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { style } from "@angular/animations";
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DbPicturesService } from '../shared/db-pictures.service';
 import { Cloth } from '../cloth/Cloth';
 
@@ -80,10 +79,12 @@ export class CatagoriesComponent implements OnInit {
     seasonForm: this.seasonForm,
     clothStyleForm: this.clothStyleForm
   });
-   selectedColor:string[]= new Array();
-   selectedStyle:string[]= new Array();
-   selectedTypeOfItem:string[]= new Array();
-   selectedSeasons:string[]= new Array();
+      selectedColor:string[] ;
+    selectedTypeOfItem:string[];
+     selectedSeasons:string[];
+  selectedStyle:string[];
+
+
 
   ngOnInit() {
 
@@ -106,25 +107,9 @@ export class CatagoriesComponent implements OnInit {
       const color = this.cloth.color.length>0 ? COLOR_CATEGORY.filter(c => this.cloth.color.includes(c.key)) : null;
       this.colorsClothForm.setValue(color);
     }
-
-    this.from.valueChanges.subscribe(value => {
+    this.from.valueChanges.subscribe(() => {
       this.submitForm.emit(this.from);
     });
-
-
-    // this.colorList = Object.keys(COLOR_CATEGORY).map(key => COLOR_CATEGORY[key]).filter(value => typeof value === 'string');
-    // this.colorList = Object.keys(COLOR_CATEGORY)
-    //   .map(key => COLOR_CATEGORY[key])
-    //   .filter(value => typeof value === "string");
-    // this.typeClothList = Object.keys(TYPE_ITEM_CATEGORY)
-    //   .map(key => TYPE_ITEM_CATEGORY[key])
-    //   .filter(value => typeof value === "string");
-    // this.seasonList = Object.keys(SEASONS_CATEGORY)
-    //   .map(key => SEASONS_CATEGORY[key])
-    //   .filter(value => typeof value === "string");
-    // this.clothStyleList = Object.keys(CLOTH_STYLE_CATEGORY)
-    //   .map(key => CLOTH_STYLE_CATEGORY[key])
-    //   .filter(value => typeof value === "string");
 
     this.typesClothForm.valueChanges.subscribe(
       (value: string[]) => (this.selectedTypeOfItem = value)
@@ -140,23 +125,9 @@ export class CatagoriesComponent implements OnInit {
       (value: string[]) => (this.selectedColor = value)
     );
 
-
-      this.seasonForm.valueChanges.subscribe((value) =>{
-      console.log(value)
-     })
   }
-  // seasonSelected(value) {
-  //   console.log(this.selectedCategories);
-  // }
+
   search(event) {
-    // this.getSelected.emit(this.selectedCategories);
-    this.pictureService.search(this.selectedColor, this.selectedStyle, this.selectedSeasons, this.selectedTypeOfItem)
-    console.log(this.selectedColor, this.selectedStyle, this.selectedSeasons, this.selectedTypeOfItem);
+   this.pictureService.search(this.selectedColor, this.selectedStyle,this.selectedSeasons, this.selectedTypeOfItem);
   }
 }
-// export class Categories {
-//   color: COLOR_CATEGORY[];
-//   style: CLOTH_STYLE_CATEGORY[];
-//   type: TYPE_ITEM_CATEGORY[];
-//   season: SEASONS_CATEGORY[];
-// }

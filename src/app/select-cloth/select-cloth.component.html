@@ -1,4 +1,4 @@
-<mat-card  class="container" fxLayout="row wrap">
+<mat-card  *ngIf="selectClothes.length>0" class="container" fxLayout="row wrap">
       <app-cloth  *ngFor="let selectCloth of selectClothes"   [cloth]="selectCloth"
        [isChoosen]="isChoosen" (removeFavorite)="removeFromFavorites($event)"
        style="margin: 10px;" fxFlex="30"></app-cloth>

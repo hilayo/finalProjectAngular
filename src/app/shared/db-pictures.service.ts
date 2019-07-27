@@ -20,15 +20,22 @@ const UID = function () {
 })
 export class DbPicturesService {
   private choosenClothesArray: Cloth[] = new Array();
-
   url: string = "http://localhost:3000/clothes";
+  name: string;
+  userId: string;
 
   private _clothsArray: BehaviorSubject<Cloth[]> = new BehaviorSubject(null);
   constructor(private http: HttpClient) {
     this.loadInitialData();
   }
-  name: string;
-  userId: string;
+
+
+  loadInitialData() {
+    this.http.get<Cloth[]>(this.url)
+    .subscribe(data => {
+          this._clothsArray.next(data),
+            err => console.log("Error retrieving Todos");})
+  }
 
   addPicture(imageBase64: any) {
     const cloth: Cloth = {
@@ -63,23 +70,6 @@ export class DbPicturesService {
     return this.choosenClothesArray;
   }
 
-  //   deletePicture(id:string){
-  //     console.log(id)
-  // ;    this.http.delete( `${this.url}/${id}`).subscribe(data=>console.log("delete success"));
-  //   }
-  //   deletePicture(id:string){
-  //     console.log(id)
-  // ;    this.http.delete( `${this.url}/${id}`).subscribe(data=>console.log("delete success"));
-  //   }
-
-  loadInitialData() {
-    this.initialArray();
-
-    // this.http.get<Cloth[]>(this.url).
-    // subscribe(data=> {this._clothsArray.next(data),
-    //     err => console.log("Error retrieving Todos");
-    // });
-  }
   deletePicture(id: string) {
     this.http.delete(`${this.url}/${id}`).subscribe(data => {
       let clothsArray: Cloth[] = this._clothsArray.getValue();
@@ -96,19 +86,14 @@ export class DbPicturesService {
   updateCloth(cloth: Cloth) {
     console.log(cloth);
     this.http.put(`${this.url}/${cloth.id}`, cloth).subscribe(data => {
-      // let clothsArray: Cloth[] = this._clothsArray.getValue();
-      // clothsArray.forEach((item, index) => {
-      //   if (item.id === id) {
-      //     clothsArray.splice(index, 1);
-      //   }
-      // });
-      // this._clothsArray.next(clothsArray);
+      let clothsArray: Cloth[] = this._clothsArray.getValue();
+      clothsArray[cloth.id] = cloth;
+      this._clothsArray.next(clothsArray);
       console.log("update success");
     });
   }
 
   search(color: string[], clothStyle: string[], seasons: string[], typeOfItem: string[]) {
-    debugger
     console.log(color, clothStyle, seasons, typeOfItem);
     //let clothsArray: Cloth[] = this._clothsArray.getValue();
 
@@ -163,18 +148,6 @@ export class DbPicturesService {
     this.userId = userId;
   }
 
-  initialArray() {
-    this.http.get<Cloth[]>(this.url)
-    .subscribe(data => {
-          this._clothsArray.next(data),
-            err => console.log("Error retrieving Todos");});
 
-    // .pipe(tap(x => console.log(x)),
-    //   map((x: Cloth[]) => x.filter((y: Cloth) => y.userId === this.userId)),
-    //   tap(x => console.log(x))).
-    //   subscribe(data => {
-    //     this._clothsArray.next(data),
-    //       err => console.log("Error retrieving Todos");
-    //   });
-  }
+
 }
