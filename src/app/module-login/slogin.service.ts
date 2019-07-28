@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './users';
 import { tap, map } from 'rxjs/operators';
@@ -28,7 +28,7 @@ export class SLoginService {
   url: string = "http://localhost:3000/users";
   userName: string;
   userId: string;
-
+   $isUserLoggedIn:BehaviorSubject<boolean>=new BehaviorSubject(false);
   callLoginSignUp(user: string, password: string, name: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -66,6 +66,10 @@ export class SLoginService {
     }
     setUserId(userId: string) {
       this.userId = userId;
+      this.$isUserLoggedIn.next(true);
+    }
+    $getUserLoggedIn(){
+     return this.$isUserLoggedIn.asObservable();
     }
 
 }

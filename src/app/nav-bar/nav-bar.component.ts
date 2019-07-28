@@ -1,4 +1,6 @@
+
 import { Component, OnInit } from '@angular/core';
+import { SLoginService } from '../module-login/slogin.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-
-  constructor() { }
+  userLoggedIn:boolean;
+  constructor(private slogin: SLoginService) { }
 
   ngOnInit() {
+    this.slogin.$isUserLoggedIn.subscribe(val => this.userLoggedIn = val);
+
+    this.userLoggedIn=!!this.slogin.getName();
   }
 
 }

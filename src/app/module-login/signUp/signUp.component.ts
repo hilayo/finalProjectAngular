@@ -1,8 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
-import { error } from '@angular/compiler/src/util';
 import { SLoginService } from '../slogin.service';
-import { DbPicturesService } from 'src/app/shared/db-pictures.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -46,11 +44,6 @@ export class signUpComponent implements OnInit {
       },
      {validator : signUpComponent.confrimPasswordValidator });
   }
-
-
-
-
-
 
   submit() {
     this.slogin
