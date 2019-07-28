@@ -15,12 +15,12 @@ import { SLoginService } from './module-login/slogin.service';
 @Injectable({
   providedIn: 'root',
 })
-export class OnlyLoggedInUsersGuard implements CanActivate{
-  constructor(private slogin:SLoginService , private router: Router) {}
+export class OnlyLoggedInUsersGuard implements CanActivate {
+  constructor(private slogin: SLoginService, private router: Router) { }
   canActivate(): boolean {
     console.log('AuthGuard#canActivate called');
-    if(!!this.slogin.getUserId())
-           return true;
+    if (!!this.slogin.getUserId())
+      return true;
     this.router.navigate(['/login']);
     return false;
   }

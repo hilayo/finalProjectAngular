@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900");
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background: #112233;
 }
 
 .weather-card {
-  margin:  auto;
+  margin: auto;
   height: 570px;
   width: 450px;
   background: #fff;
@@ -17,7 +17,8 @@ body {
   height: 570px;
   width: 100%;
   overflow: hidden;
-  background: url("https://s-media-cache-ak0.pinimg.com/564x/cf/1e/c4/cf1ec4b0c96e59657a46867a91bb0d1e.jpg") no-repeat;
+  background: url("https://s-media-cache-ak0.pinimg.com/564x/cf/1e/c4/cf1ec4b0c96e59657a46867a91bb0d1e.jpg")
+    no-repeat;
   background-size: cover;
   background-position: center center;
   text-align: center;
@@ -130,7 +131,7 @@ body {
 .weather-card .bottom .wrapper .forecast li .condition .temp {
   display: inline-block;
   vertical-align: top;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 20px;
   font-weight: 400;
   padding-top: 2px;
@@ -149,7 +150,8 @@ body {
   color: rgba(0, 0, 0, 0.8);
 }
 .weather-card.rain .top {
-  background: url("http://img.freepik.com/free-vector/girl-with-umbrella_1325-5.jpg?size=338&ext=jpg") no-repeat;
+  background: url("http://img.freepik.com/free-vector/girl-with-umbrella_1325-5.jpg?size=338&ext=jpg")
+    no-repeat;
   background-size: cover;
   background-position: center center;
 }

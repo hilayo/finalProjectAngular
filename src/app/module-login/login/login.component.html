@@ -21,15 +21,10 @@
               </mat-error>
             </mat-form-field>
           </p>
-
-
           <p *ngIf="error" class="error">
             {{ error }}
           </p>
-
             <button   type="submit" color="primary" mat-raised-button [disabled]="!this.form.valid" >Login</button>
-
-
         </form>
       </mat-card-content>
     </mat-card>

@@ -54,12 +54,10 @@ const SEASONS_CATEGORY = [
 })
 export class CatagoriesComponent implements OnInit {
   @Output() getSelected: EventEmitter<Cloth> = new EventEmitter();
-  //   selectedCategories: Categories = new Categories();
   @Output() submitForm = new EventEmitter();
 
 
   constructor(private pictureService: DbPicturesService) {
-    //this.selectedCategories = { color: [], style: [], type: [], season: [] };
   }
 
   @Input() cloth: Cloth;
@@ -87,19 +85,19 @@ export class CatagoriesComponent implements OnInit {
     if (!!this.cloth) {
       //set cloth categories:
       //seasons
-      const clothSeason = this.cloth.seasons.length>0 ? SEASONS_CATEGORY.filter(c => this.cloth.seasons.includes(c.key)) : null;
+      const clothSeason = this.cloth.seasons.length > 0 ? SEASONS_CATEGORY.filter(c => this.cloth.seasons.includes(c.key)) : null;
       this.seasonForm.setValue(clothSeason);
 
       //type Cloth
-      const clothType = this.cloth.typeOfItem.length>0 ? TYPE_ITEM_CATEGORY.filter(c => this.cloth.typeOfItem.includes(c.key)) : null;
+      const clothType = this.cloth.typeOfItem.length > 0 ? TYPE_ITEM_CATEGORY.filter(c => this.cloth.typeOfItem.includes(c.key)) : null;
       this.typesClothForm.setValue(clothType);
 
       //cloth Style
-      const clothStyle = this.cloth.clothStyle.length>0 ? CLOTH_STYLE_CATEGORY.filter(c => this.cloth.clothStyle.includes(c.key)) : null;
+      const clothStyle = this.cloth.clothStyle.length > 0 ? CLOTH_STYLE_CATEGORY.filter(c => this.cloth.clothStyle.includes(c.key)) : null;
       this.clothStyleForm.setValue(clothStyle);
 
       //color
-      const color = this.cloth.color.length>0 ? COLOR_CATEGORY.filter(c => this.cloth.color.includes(c.key)) : null;
+      const color = this.cloth.color.length > 0 ? COLOR_CATEGORY.filter(c => this.cloth.color.includes(c.key)) : null;
       this.colorsClothForm.setValue(color);
     }
     this.form.valueChanges.subscribe(() => {
@@ -108,10 +106,10 @@ export class CatagoriesComponent implements OnInit {
   }
 
   search(event) {
-  var selectedColor:string[]=this.form.value.colorsClothForm ? this.form.value.colorsClothForm.map(c => c.key) : [];
-  var selectedTypeOfItem:string[]=this.form.value.typesClothForm ? this.form.value.typesClothForm .map(c => c.key) : [];
-    var selectedSeasons:string[]=this.form.value.seasonForm ? this.form.value.seasonForm.map(c => c.key) : [];
-    var selectedStyle:string[]=this.form.value.clothStyleForm ? this.form.value.clothStyleForm .map(c => c.key) : [];
-   this.pictureService.search(selectedColor, selectedStyle,selectedSeasons, selectedTypeOfItem);
+    var selectedColor: string[] = this.form.value.colorsClothForm ? this.form.value.colorsClothForm.map(c => c.key) : [];
+    var selectedTypeOfItem: string[] = this.form.value.typesClothForm ? this.form.value.typesClothForm.map(c => c.key) : [];
+    var selectedSeasons: string[] = this.form.value.seasonForm ? this.form.value.seasonForm.map(c => c.key) : [];
+    var selectedStyle: string[] = this.form.value.clothStyleForm ? this.form.value.clothStyleForm.map(c => c.key) : [];
+    this.pictureService.search(selectedColor, selectedStyle, selectedSeasons, selectedTypeOfItem);
   }
 }

@@ -70,7 +70,7 @@ export class RecommendationClothService {
     if (!clothes || clothes.length <= 0)
       return null;
     var filterArray: Cloth[] = clothes.filter(c =>
-        (c.typeOfItem.filter(ct => types.includes(ct)).length > 0) );
+      (c.typeOfItem.filter(ct => types.includes(ct)).length > 0));
     //select random item from array
     return !!filterArray ? filterArray[Math.floor(Math.random() * filterArray.length)] : null;
   }

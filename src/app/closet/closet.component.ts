@@ -16,7 +16,7 @@ export class ClosetComponent implements OnInit {
 
   ngOnInit() {
     this.clothArray = this.pictureService.getCloths();
-    this.pictureService.search([],[],[],[]);
+    this.pictureService.search([],[],[],[]); //fixed bug - BeaviorSubject now contain all the clothes
   }
   deleteCloth(id: string) {
     this.pictureService.deletePicture(id);

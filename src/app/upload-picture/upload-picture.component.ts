@@ -5,6 +5,7 @@ import { DbPicturesService } from '../shared/db-pictures.service';
 import { ImageProccessingService } from '../image-proccessing-core/image-proccessing.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
+import { Cloth } from '../cloth/Cloth';
 
 @Component({
   selector: 'app-upload-picture',
@@ -13,21 +14,20 @@ import { CategoryDialogComponent } from '../category-dialog/category-dialog.comp
 })
 export class UploadPictureComponent implements OnInit {
 
-  constructor(private pictureService :DbPicturesService,private imgProccessService:ImageProccessingService,
-    public dialog: MatDialog){
+  constructor(private pictureService: DbPicturesService, private imgProccessService: ImageProccessingService,
+    public dialog: MatDialog) {
 
   }
   ngOnInit(): void {
 
   }
-  //public seconds:number ;
-   private trigger: Subject<void> = new Subject<void>();
+  private trigger: Subject<void> = new Subject<void>();
 
 
   public webcamImage: WebcamImage = null;
 
   public triggerSnapshot(): void {
-         this.trigger.next();
+    this.trigger.next();
 
   }
 
@@ -39,23 +39,15 @@ export class UploadPictureComponent implements OnInit {
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
-  public savePicture()
-  {
-
-   // console.log("savePicture" , this.webcamImage.imageAsBase64.toString())
-
-      this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
-      // let dialogRef = this.dialog.open(CategoryDialogComponent, {
-      //   height: '400px',
-      //   width: '600px',
-      //   });
-    }
-
-
-    //Please don't call this function in a loop my credit card will die and hunt you ,you been warned!!
-  public callAPI(){
-    this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data)=>{
-    })
+  public savePicture() {
+    this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
   }
+
+  //Please don't call this function in a loop my credit card will die and hunt you ,you been warned!!
+  //call azure api Computer Vision
+  // public callAPI() {
+  //   this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data) => {
+  //   })
+ // }
 
 }

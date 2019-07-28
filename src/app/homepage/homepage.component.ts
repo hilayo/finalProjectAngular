@@ -9,15 +9,15 @@ import { SLoginService } from '../module-login/slogin.service';
 export class HomepageComponent implements OnInit {
 
   public name: string;
-  public temp:number;
-  constructor(private sLogin:SLoginService){
+  public temp: number;
+  constructor(private sLogin: SLoginService) {
   }
 
   ngOnInit() {
-   this.name= this.sLogin.getName();
+    this.name = this.sLogin.getName();
   }
-  setTemp(t:number){
-  this.temp=t;
+  setTemp(t: number) {
+    this.temp = t;
   }
 
 }

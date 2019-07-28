@@ -13,20 +13,20 @@ export class RecommendationComponent implements OnInit {
 
   @Input() temp: number;
   viewClothArray: Cloth[];
-  recommendationSubscription:Subscription;
-  constructor(private pictureService: DbPicturesService, private RecommendationService:RecommendationClothService) { }
+  recommendationSubscription: Subscription;
+  constructor(private pictureService: DbPicturesService, private RecommendationService: RecommendationClothService) { }
 
   ngOnInit() {
 
   }
   ngOnChanges(changes: SimpleChanges) {
     this.pictureService.getClothesFromServer().subscribe((data: Cloth[]) => {
-     this.viewClothArray= this.RecommendationService.getRecommendation(data,changes.temp.currentValue);
+      this.viewClothArray = this.RecommendationService.getRecommendation(data, changes.temp.currentValue);
     }
     );
-}
-ngOnDestroy(): void {
-  if(!!this.recommendationSubscription)
-        this.recommendationSubscription.unsubscribe();
-}
+  }
+  ngOnDestroy(): void {
+    if (!!this.recommendationSubscription)
+      this.recommendationSubscription.unsubscribe();
+  }
 }
