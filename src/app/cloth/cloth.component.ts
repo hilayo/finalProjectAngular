@@ -21,7 +21,7 @@ export class ClothComponent implements OnInit {
   }
 
   openCatagories(){
-    let dialogRef = this.dialog.open(CategoryDialogComponent, {
+     this.dialog.open(CategoryDialogComponent, {
       height: '600px',
       width: '390px',
       data:this.cloth

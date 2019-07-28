@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import {  Subscription } from 'rxjs';
 import { WeatherService } from './weather.service';
-import { WeatherData } from './weatherData';
 
 
 @Component({
