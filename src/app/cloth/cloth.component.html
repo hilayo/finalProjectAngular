@@ -1,5 +1,5 @@
 
-<mat-card >
+<mat-card class="box" >
   <mat-card-content>
     <img *ngIf="cloth.isImagebase64" mat-card-image [src]="'data:image/png;base64,' + cloth.image" />
     <img *ngIf="!cloth.isImagebase64" mat-card-image [src]="cloth.image" />
