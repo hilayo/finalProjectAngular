@@ -1,9 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { error } from '@angular/compiler/src/util';
 import { SLoginService } from '../slogin.service';
 import { Router } from '@angular/router';
-import { DbPicturesService } from 'src/app/shared/db-pictures.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +25,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.min(1)])
     });
   }
-  constructor(private slogin: SLoginService, private router: Router,private dbservice: DbPicturesService) { }
+  constructor(private slogin: SLoginService, private router: Router) { }
 
   checkValidation() {
     return this.form.valid;
@@ -42,9 +40,8 @@ export class LoginComponent implements OnInit {
           return;
         }
         else {
-          this.dbservice.setName(res.name);
-          this.dbservice.setUserId(res.id);
-          //this.router.navigate(['/homePage', this.nameUser]);
+          this.slogin.setName(res.name);
+          this.slogin.setUserId(res.id);
           this.router.navigate(['/homePage']);
 
         }

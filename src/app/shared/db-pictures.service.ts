@@ -21,7 +21,7 @@ const UID = function () {
 export class DbPicturesService {
   private choosenClothesArray: Cloth[] = new Array();
   url: string = "http://localhost:3000/clothes";
-  name: string;
+  userName: string;
   userId: string;
 
   private _clothsArray: BehaviorSubject<Cloth[]> = new BehaviorSubject(null);
@@ -131,19 +131,6 @@ export class DbPicturesService {
   }
 
 
-  getName(): string {
-    return this.name;
-  }
-  setName(name: string): void {
-    this.name = name;
-  }
-
-  getUserId(): string {
-    return this.userId;
-  }
-  setUserId(userId: string): void {
-    this.userId = userId;
-  }
 
 
 

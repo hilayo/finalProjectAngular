@@ -26,7 +26,8 @@ export class SLoginService {
   }
   path: string = 'https://reqres.in/api/login';
   url: string = "http://localhost:3000/users";
-  x
+  userName: string;
+  userId: string;
 
   callLoginSignUp(user: string, password: string, name: string): Observable<User> {
     const httpOptions = {
@@ -53,5 +54,18 @@ export class SLoginService {
          tap(x => console.log(x)));
      }
 
+     getName(): string {
+      return this.userName;
+    }
+    setName(name: string) {
+      this.userName = name;
+    }
+
+    getUserId(): string {
+      return this.userId;
+    }
+    setUserId(userId: string) {
+      this.userId = userId;
+    }
 
 }

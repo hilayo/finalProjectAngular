@@ -15,7 +15,7 @@ export class signUpComponent implements OnInit {
   @Output() submitEM = new EventEmitter();
   form: FormGroup;
 
-  constructor(private slogin: SLoginService ,private router: Router, private fb:FormBuilder,private dbService:DbPicturesService ) { }
+  constructor(private slogin: SLoginService ,private router: Router, private fb:FormBuilder ) { }
 
   static confrimPasswordValidator (form: FormGroup){
 
@@ -61,8 +61,8 @@ export class signUpComponent implements OnInit {
           return;
         }
         else{
-        this.dbService.setName(this.form.value.userName);
-        this.dbService.setUserId(res.id) ;
+        this.slogin.setName(this.form.value.userName);
+        this.slogin.setUserId(res.id) ;
         this.router.navigate(['/homePage']);
       }
       });

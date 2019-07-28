@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DbPicturesService } from '../shared/db-pictures.service';
+import { SLoginService } from '../module-login/slogin.service';
 
 @Component({
   selector: 'app-homepage',
@@ -10,11 +10,11 @@ export class HomepageComponent implements OnInit {
 
   public name: string;
   public temp:number;
-  constructor(private dbService:DbPicturesService){
+  constructor(private sLogin:SLoginService){
   }
 
   ngOnInit() {
-   this.name= this.dbService.getName();
+   this.name= this.sLogin.getName();
   }
   setTemp(t:number){
   this.temp=t;
