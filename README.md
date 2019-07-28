@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
 
-** FOR THIS PROJECT:
+# FOR THIS PROJECT:
 you need to run json-Server  Run `npm run serve-server`
 
 also you can login with email: "hilalosh10@gmail.com"  password: hila
