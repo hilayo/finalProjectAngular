@@ -2,6 +2,9 @@ import { Injectable } from "@angular/core";
 import { Cloth } from "../cloth/Cloth";
 import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
+import { tap, map } from 'rxjs/operators';
+import { SLoginService } from '../module-login/slogin.service';
+import { debug } from 'util';
 
 const UID = function () {
   // Math.random should be unique because of its seeding algorithm.
@@ -22,41 +25,51 @@ export class DbPicturesService {
   url: string = "http://localhost:3000/clothes";
   userName: string;
   userId: string;
-
+  userClothArray: Cloth[];
   private _clothsArray: BehaviorSubject<Cloth[]> = new BehaviorSubject(null);
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private slogin: SLoginService) {
+    this.userId = this.slogin.getUserId();
     this.loadInitialData();
+
   }
 
 
   loadInitialData() {
     this.http.get<Cloth[]>(this.url)
-      .subscribe(data => {
+      .pipe(tap(x => console.log(x)),
+        map((x: Cloth[]) => x.filter((y: Cloth) => y.userId === this.userId)),
+        tap(x => console.log(x))).
+      subscribe(data => {
         this._clothsArray.next(data),
-          err => console.log("Error retrieving Todos");
-      })
+        err => console.log("Error retrieving Todos");
+      });
   }
 
+
   getClothesFromServer() {
-    return this.http.get<Cloth[]>(this.url);
+    return this.http.get<Cloth[]>(this.url).pipe(tap(x => console.log(x)),
+      map((x: Cloth[]) => x.filter((y: Cloth) => y.userId === this.userId)),
+      tap(x => console.log(x)));
   }
-  addPicture(imageBase64: any) {
+  addPicture(imageBase64: any):Cloth {
     const cloth: Cloth = {
       userId: this.userId,
       id: UID(),
       image: imageBase64,
       isImagebase64: true,
-      color: null,
-      typeOfItem: null,
+      color: new Array(),
+      typeOfItem: new Array(),
       clothStyle: new Array(),
       seasons: new Array(),
     };
-    this.saveCloth(cloth);
+    this.saveCloth(cloth)
+    return cloth;
+
   }
 
 
   saveCloth(cloth: Cloth) {
-    this.http.post(this.url, cloth).subscribe(data => {
+   return this.http.post(this.url, cloth).subscribe(data => {
       this._clothsArray.getValue().push(cloth);
       this._clothsArray.next(this._clothsArray.getValue());
     });

@@ -10,11 +10,13 @@ export class HomepageComponent implements OnInit {
 
   public name: string;
   public temp: number;
+  public userId:string;
   constructor(private sLogin: SLoginService) {
   }
 
   ngOnInit() {
     this.name = this.sLogin.getName();
+    this.userId=this.sLogin.getUserId();
   }
   setTemp(t: number) {
     this.temp = t;
