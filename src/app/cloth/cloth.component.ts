@@ -1,7 +1,6 @@
 import { Component, OnInit,Input, EventEmitter, Output } from '@angular/core';
 import { DbPicturesService } from '../shared/db-pictures.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { CatagoriesComponent } from '../catagories/catagories.component';
+import {MatDialog} from '@angular/material';
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 import { Cloth } from './Cloth';
 
@@ -11,7 +10,6 @@ import { Cloth } from './Cloth';
   styleUrls: ['./cloth.component.scss']
 })
 export class ClothComponent implements OnInit {
-  //@Input() ImageSrc: string;
   @Input() cloth:Cloth;
   @Input() isChoosen:boolean;
   @Output() deleteEM:EventEmitter<string> = new EventEmitter();

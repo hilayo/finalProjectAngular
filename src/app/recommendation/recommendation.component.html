@@ -1,0 +1,13 @@
+
+<mat-card class="viewClothe">
+    <mat-card-title>
+      The look for today:)
+    </mat-card-title>
+    <div class="container" fxLayout="row wrap" >
+      <mat-card fxFlex="50" *ngFor="let cloth of viewClothArray">
+          <img *ngIf="cloth.isImagebase64" mat-card-image [src]="'data:image/png;base64,' + cloth.image" />
+          <img *ngIf="!cloth.isImagebase64" mat-card-image [src]="cloth.image" />
+      </mat-card>
+  </div>
+
+

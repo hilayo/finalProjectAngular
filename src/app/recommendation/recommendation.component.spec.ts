@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChooseClothViewComponent } from './choose-cloth-view.component';
+import { RecommendationComponent } from './recommendation.component';
 
-describe('ChooseClothViewComponent', () => {
-  let component: ChooseClothViewComponent;
-  let fixture: ComponentFixture<ChooseClothViewComponent>;
+describe('RecommendationComponent', () => {
+  let component: RecommendationComponent;
+  let fixture: ComponentFixture<RecommendationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChooseClothViewComponent ]
+      declarations: [ RecommendationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChooseClothViewComponent);
+    fixture = TestBed.createComponent(RecommendationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

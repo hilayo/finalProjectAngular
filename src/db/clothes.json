@@ -32,17 +32,16 @@
       "isImagebase64": false,
       "image": "https://market.marmelada.co.il/photos/992427.jpg?1473662487",
       "color": [
-        "BLACK"
+        "YELLOW"
       ],
       "typeOfItem": [
-        "DRESS"
+        "SKIRT"
       ],
       "seasons": [
-        "WINTER"
+        "SUMMER"
       ],
       "clothStyle": [
-        "WORK_CLOTH",
-        "EVENT"
+        "CASUALE"
       ]
     },
     {
@@ -53,19 +52,36 @@
       "color": [
         "BLACK"
       ],
-      "typeOfItem": [],
-      "seasons": [],
-      "clothStyle": []
+      "typeOfItem": [
+        "SHIRT"
+      ],
+      "seasons": [
+        "SUMMER"
+      ],
+      "clothStyle": [
+        "CASUALE"
+      ]
     },
     {
       "id": "3qm7BPc",
       "userId": "Dr5Ozw6",
       "isImagebase64": false,
       "image": "https://www.terminalx.com/pub/media/catalog/product/cache/small_image/360x480/beff4985b56e3afdbeabfc89641a4582/x/1/x166440005-11555400558.jpg",
-      "color": [],
-      "typeOfItem": [],
-      "seasons": [],
-      "clothStyle": []
+      "color": [
+        "WHITE"
+      ],
+      "typeOfItem": [
+        "SHOES"
+      ],
+      "seasons": [
+        "SUMMER",
+        "WINTER",
+        "FALL",
+        "SPRING"
+      ],
+      "clothStyle": [
+        "CASUALE"
+      ]
     }
   ]
 }

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ClosetComponent } from '../closet/closet.component';
 import { CatagoriesComponent } from '../catagories/catagories.component';
-import { FavoritesComponent } from '../favorites/favorites.component';
 import { HomepageComponent } from './homepage.component';
 
 const routes: Routes = [
@@ -12,8 +11,7 @@ const routes: Routes = [
     loadChildren: '../upload-picture/upload-picture.module#UploadPictureModule'
   },
    { path: 'closet', component: ClosetComponent },
- { path: 'categories', component: CatagoriesComponent },
- { path: 'favorites', component: FavoritesComponent }
+
 ];
 
 @NgModule({

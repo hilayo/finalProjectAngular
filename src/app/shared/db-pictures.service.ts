@@ -37,6 +37,9 @@ export class DbPicturesService {
             err => console.log("Error retrieving Todos");})
   }
 
+  getClothesFromServer(){
+   return this.http.get<Cloth[]>(this.url);
+  }
   addPicture(imageBase64: any) {
     const cloth: Cloth = {
       userId: this.userId,
@@ -59,14 +62,16 @@ export class DbPicturesService {
   }
 
   getCloths(): Observable<Cloth[]> {
-    return new Observable(fn => this._clothsArray.subscribe(fn));
+    return this._clothsArray.asObservable();
   }
 
 
   addToChoosenClothes(cloth: Cloth) {
+    console.log(this.choosenClothesArray.length);
     this.choosenClothesArray.push(cloth);
   }
   getChoosenClothes() {
+    console.log(this.choosenClothesArray);
     return this.choosenClothesArray;
   }
 
@@ -94,43 +99,35 @@ export class DbPicturesService {
   }
 
   search(color: string[], clothStyle: string[], seasons: string[], typeOfItem: string[]) {
-    console.log(color, clothStyle, seasons, typeOfItem);
-    //let clothsArray: Cloth[] = this._clothsArray.getValue();
-
-    let results = this._clothsArray.getValue();
+    this.getClothesFromServer().subscribe(data=> {
+    let results = data;
     console.log(results);
     if (results != null) {
       if (color.length > 0) {
         results = results.filter(cloth =>
-          cloth.color.filter(c => color.includes(c)));
+          cloth.color.filter(c => color.includes(c)).length > 0 );
 
       }
       if (clothStyle.length > 0) {
         results = results
           .filter(cloth =>
-            cloth.clothStyle.filter(c => clothStyle.includes(c)));
+            cloth.clothStyle.filter(c => clothStyle.includes(c)).length > 0 );
       }
       if (seasons.length > 0) {
         results = results
           .filter(cloth =>
-            cloth.seasons.filter(c => seasons.includes(c)));
+            cloth.seasons.filter(c => seasons.includes(c)).length > 0 );
       }
       if (typeOfItem.length > 0) {
         results = results
           .filter(cloth =>
-            cloth.typeOfItem.filter(c => typeOfItem.includes(c)));
+            cloth.typeOfItem.filter(c => typeOfItem.includes(c)).length > 0 );
       }
-      //   .filter((cloth) =>
-      //   cloth.seasons.filter(c => !seasons.includes(c)))
-      // .filter((cloth) =>
-      //   cloth.seasons.filter(c => !seasons.includes(c)))
-      // .filter((cloth) =>
-      //   cloth.clothStyle.filter(c => !clothStyle.includes(c)))
-      // .filter((cloth) =>
-      // cloth.typeOfItem.filter(c => !typeOfItem.includes(c)))
-      // [clothsArray[2]];
+
     }
+
     this._clothsArray.next(results);
+      });
   }
 
 

@@ -29,7 +29,7 @@ const CLOTH_STYLE_CATEGORY = [
 ];
 
 
-const TYPE_ITEM_CATEGORY = [
+export const TYPE_ITEM_CATEGORY = [
   { key: 'SHIRT', label: 'Shirt' },
   { key: 'SKIRT', label: 'Skrit' },
   { key: 'DRESS', label: 'Dress' },
@@ -73,18 +73,13 @@ export class CatagoriesComponent implements OnInit {
   typesClothForm: FormControl = new FormControl();
   seasonForm: FormControl = new FormControl();
   clothStyleForm: FormControl = new FormControl();
-  from: FormGroup = new FormGroup({
+
+  form: FormGroup = new FormGroup({
     colorsClothForm: this.colorsClothForm,
     typesClothForm: this.typesClothForm,
     seasonForm: this.seasonForm,
     clothStyleForm: this.clothStyleForm
   });
-      selectedColor:string[] ;
-    selectedTypeOfItem:string[];
-     selectedSeasons:string[];
-  selectedStyle:string[];
-
-
 
   ngOnInit() {
 
@@ -107,27 +102,16 @@ export class CatagoriesComponent implements OnInit {
       const color = this.cloth.color.length>0 ? COLOR_CATEGORY.filter(c => this.cloth.color.includes(c.key)) : null;
       this.colorsClothForm.setValue(color);
     }
-    this.from.valueChanges.subscribe(() => {
-      this.submitForm.emit(this.from);
+    this.form.valueChanges.subscribe(() => {
+      this.submitForm.emit(this.form);
     });
-
-    this.typesClothForm.valueChanges.subscribe(
-      (value: string[]) => (this.selectedTypeOfItem = value)
-    );
-    this.seasonForm.valueChanges.subscribe(
-      (value: string[]) => (this.selectedSeasons = value)
-    );
-    this.clothStyleForm.valueChanges.subscribe(
-      (value: string[]) => (this.selectedStyle = value)
-    );
-
-    this.colorsClothForm.valueChanges.subscribe(
-      (value: string[]) => (this.selectedColor = value)
-    );
-
   }
 
   search(event) {
-   this.pictureService.search(this.selectedColor, this.selectedStyle,this.selectedSeasons, this.selectedTypeOfItem);
+  var selectedColor:string[]=this.form.value.colorsClothForm ? this.form.value.colorsClothForm.map(c => c.key) : [];
+  var selectedTypeOfItem:string[]=this.form.value.typesClothForm ? this.form.value.typesClothForm .map(c => c.key) : [];
+    var selectedSeasons:string[]=this.form.value.seasonForm ? this.form.value.seasonForm.map(c => c.key) : [];
+    var selectedStyle:string[]=this.form.value.clothStyleForm ? this.form.value.clothStyleForm .map(c => c.key) : [];
+   this.pictureService.search(selectedColor, selectedStyle,selectedSeasons, selectedTypeOfItem);
   }
 }

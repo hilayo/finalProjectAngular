@@ -11,12 +11,9 @@ export class WeatherService {
 
 
 //openweathermap api
-  public getForecast(lat:number,lon:number): Observable<any>{
-    //api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=14b3cf0827fc9fa5f94d4bcf5a3cf5fb
-
+  public getForecast(lat:number,lon:number): Observable<WeatherData>{
     var url:string = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&APPID=${this.apiKey}`;
-      //console.log("the url",url)
-      return  this.http.get<any>(url)
+      return  this.http.get<WeatherData>(url)
   }
 
 }

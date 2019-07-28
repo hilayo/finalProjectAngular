@@ -3,7 +3,7 @@
 <mat-card-title >Welcome {{name}}:)</mat-card-title>
 </mat-card>
 <div fxLayout="row">
-<app-weather fxFlex="60%"></app-weather>
-<app-choose-cloth-view fxFlex="40%"></app-choose-cloth-view>
+<app-weather fxFlex="60%" (tempEM)="setTemp($event)"></app-weather>
+<app-recommendation fxFlex="40%" [temp]="temp"></app-recommendation>
 </div>
 </div>

@@ -3,7 +3,7 @@
       <mat-form-field>
           <mat-select placeholder="Cloth colors"  [formControl]="colorsClothForm" multiple >
             <mat-select-trigger>
-              {{colorsClothForm.value ? colorsClothForm.value[0].label : ''}}
+              {{colorsClothForm.value ? colorsClothForm.value[0]?.label : ''}}
               <span *ngIf="colorsClothForm.value?.length > 1">
                 (+{{colorsClothForm.value.length - 1}} {{colorsClothForm.value?.length === 2 ? 'other' : 'others'}})
               </span>
@@ -20,7 +20,7 @@
           <mat-form-field>
               <mat-select placeholder="Cloth types"  [formControl]="typesClothForm" multiple >
                 <mat-select-trigger>
-                  {{typesClothForm.value ? typesClothForm.value[0].label : ''}}
+                  {{typesClothForm.value ? typesClothForm.value[0]?.label : ''}}
                   <span *ngIf="typesClothForm.value?.length > 1">
                     (+{{typesClothForm.value.length - 1}} {{typesClothForm.value?.length === 2 ? 'other' : 'others'}})
                   </span>
@@ -38,7 +38,7 @@
 
         <!-- <mat-select placeholder="Season" (valueChange)="seasonSelected($event)"*/ [formControl]="seasonForm" multiple > -->
           <mat-select-trigger>
-            {{seasonForm.value ? seasonForm.value[0].label : ''}}
+            {{seasonForm.value ? seasonForm.value[0]?.label : ''}}
             <span *ngIf="seasonForm.value?.length > 1">
               (+{{seasonForm.value.length - 1}} {{seasonForm.value?.length === 2 ? 'other' : 'others'}})
             </span>
@@ -53,7 +53,7 @@
         <mat-form-field>
             <mat-select  placeholder="Cloth Style" [formControl]="clothStyleForm" multiple>
               <mat-select-trigger>
-                {{clothStyleForm.value ? clothStyleForm.value[0].label : ''}}
+                {{clothStyleForm.value ? clothStyleForm.value[0]?.label : ''}}
                 <span *ngIf="clothStyleForm.value?.length > 1">
                   (+{{clothStyleForm.value.length - 1}} {{clothStyleForm.value?.length === 2 ? 'other' : 'others'}})
                 </span>

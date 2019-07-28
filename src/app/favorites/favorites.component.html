@@ -1,7 +1,0 @@
-
-<div fxLayout="row" >
-  My Favorite
-  <div *ngFor="let favoriteCloth of favoriteClothes" class="container">
-    <app-cloth  [cloth]="favoriteCloth" [isChoosen]="isChoosen" (removeFavorite)="removeFromFavorites($event)" ></app-cloth>
-  </div>
-</div>

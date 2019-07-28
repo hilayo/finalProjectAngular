@@ -3,7 +3,6 @@
   <mat-card-content>
     <img *ngIf="cloth.isImagebase64" mat-card-image [src]="'data:image/png;base64,' + cloth.image" />
     <img *ngIf="!cloth.isImagebase64" mat-card-image [src]="cloth.image" />
-
   </mat-card-content >
   <mat-card-actions fxLayout="column" fxFlex="20%" >
     <button *ngIf="!isChoosen" mat-mini-fab color="primary" (click)="openCatagories()">

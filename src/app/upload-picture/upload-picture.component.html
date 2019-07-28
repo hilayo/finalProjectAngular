@@ -3,29 +3,12 @@
   <div>
     <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" ></webcam>
     <br/>
-    <!-- <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button> -->
-
-
-
     <img id="snapshotBtn" (click)="triggerSnapshot();" style="height:50px; width:50px;" src="assets/images/cameraImg.jpg" alt="snapshot"/>
-
     <!-- <button id="callAPI" (click)="callAPI();">call API</button> -->
   </div>
 </div>
 <div style="text-align:center" class="snapshot" *ngIf="webcamImage">
-  <h2>Save picture!</h2>
+  <h2>Save picture!  <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/> </h2>
   <img [src]="webcamImage.imageAsDataUrl"/>
-<br/>
-<!-- <button  mat-fab color="primary" (click)="savePicture();" style="height:50px; width:50px;">
-    <mat-icon>save_alt</mat-icon>
-  </button> -->
- <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/>
-
 </div>
-
-<!-- example:show image from imageAsBase64  -->
-<!-- <div style="text-align:center" class="snapshot" *ngIf="webcamImage">
-  <img [src]="'data:image/png;base64,' + webcamImage.imageAsBase64"/>
-</div> -->
-
 

@@ -7,13 +7,13 @@ import { StartPageComponent } from './start-page/start-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {LoginModule} from '../app/module-login/module-login.module';
 import { MatToolbarModule} from '@angular/material';
+import { RecommendationComponent } from './recommendation/recommendation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
     NavBarComponent
-
      ],
 
   imports: [
