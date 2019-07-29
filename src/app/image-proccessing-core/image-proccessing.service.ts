@@ -24,14 +24,16 @@ export class ImageProccessingService {
         'Access-Control-Allow-Origin': "*"
       })
     };
-    // const body = { "url": "https://ae01.alicdn.com/kf/HTB1GUs2JpXXXXakXXXXq6xXFXXXz/2015-fall-sweaters-for-women-pull-long-sweater-woman-pullovers-knitwear-fashion-mori-girl-sueter-mujer.jpg" }
-    // return this.http.post<imageProccessingOutput>(this.url, body, httpOptions).pipe(map(result =>
-    //   new imageProccessingMinOutput(result.color, result.tags, result.description)
-    // ));
-    const body = { "url": ImageBase64 };
+    const body = { "url": "https://ae01.alicdn.com/kf/HTB1GUs2JpXXXXakXXXXq6xXFXXXz/2015-fall-sweaters-for-women-pull-long-sweater-woman-pullovers-knitwear-fashion-mori-girl-sueter-mujer.jpg" }
     return this.http.post<imageProccessingOutput>(this.url, body, httpOptions).pipe(map(result =>
       new imageProccessingMinOutput(result.color, result.tags, result.description)
     ));
+    // const body = { "url": ImageBase64 };
+    // return this.http.post<imageProccessingOutput>(this.url, body, httpOptions).pipe(map(result =>
+    //   new imageProccessingMinOutput(result.color, result.tags, result.description)
+    // ));
+
+
   }
 }
 
