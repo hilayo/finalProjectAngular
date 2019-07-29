@@ -8,7 +8,9 @@ import { imageProccessingOutput, imageProccessingMinOutput } from './image-procc
 })
 
 export class ImageProccessingService {
-  private url: string = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/analyze?visualFeatures=Color,Tags,Description&language=en";
+  //private url: string = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/analyze?visualFeatures=Color,Tags,Description&language=en";
+  private url: string = "https://mystyle.cognitiveservices.azure.com/";
+  
   private apiKey: string = "1458ad28bb44457583a9276eb9c2ef00";
   constructor(private http: HttpClient) { }
 

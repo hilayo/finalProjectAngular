@@ -1,9 +1,24 @@
-<mat-toolbar color="primary" >
+<mat-toolbar color="primary">
   <ul>
-    <li *ngIf="userLoggedIn"> <a routerLink="/homePage" routerLinkActive="active">HomePage</a></li>
-   <li *ngIf="userLoggedIn"> <a routerLink="/homePage/closet" routerLinkActive="active">closet</a></li>
-    <li *ngIf="userLoggedIn"> <a routerLink="/homePage/uploadPicture" routerLinkActive="active">camera</a></li>
- <li *ngIf="!userLoggedIn"> <a routerLink="/login" routerLinkActive="active">sign in</a></li>
-<li *ngIf="!userLoggedIn"> <a routerLink="/signUp" routerLinkActive="active">sign Up</a></li>
+    <li *ngIf="userLoggedIn">
+      <a routerLink="/homePage" routerLinkActive="active">HomePage</a>
+    </li>
+    <li *ngIf="userLoggedIn">
+      <a routerLink="/homePage/closet" routerLinkActive="active">closet</a>
+    </li>
+    <li *ngIf="userLoggedIn">
+      <a routerLink="/homePage/uploadPicture" routerLinkActive="active"
+        >camera</a
+      >
+    </li>
+    <li *ngIf="!userLoggedIn">
+      <a routerLink="/login" routerLinkActive="active">sign in</a>
+    </li>
+    <li *ngIf="!userLoggedIn">
+      <a routerLink="/signUp" routerLinkActive="active">sign Up</a>
+    </li>
+    <li *ngIf="userLoggedIn">
+      <a routerLink="/login" routerLinkActive="active" (click)="logOut()"  >Log Out</a>
+    </li>
   </ul>
 </mat-toolbar>

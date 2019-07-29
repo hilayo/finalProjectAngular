@@ -6,6 +6,8 @@ import { ImageProccessingService } from '../image-proccessing-core/image-procces
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
 import { Cloth } from '../cloth/Cloth';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-upload-picture',
@@ -14,8 +16,9 @@ import { Cloth } from '../cloth/Cloth';
 })
 export class UploadPictureComponent implements OnInit {
 
+  cloth:any;
   constructor(private pictureService: DbPicturesService, private imgProccessService: ImageProccessingService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog, private router: Router) {
 
   }
   ngOnInit(): void {
@@ -40,7 +43,10 @@ export class UploadPictureComponent implements OnInit {
     return this.trigger.asObservable();
   }
   public savePicture() {
-    this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
+
+    this.cloth =this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
+    this.openCatagories();
+    // this.router.navigate(['homePage/closet']);
   }
 
   //Please don't call this function in a loop my credit card will die and hunt you ,you been warned!!
@@ -48,6 +54,15 @@ export class UploadPictureComponent implements OnInit {
   // public callAPI() {
   //   this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data) => {
   //   })
- // }
+  // }
+
+  openCatagories() {
+
+    this.dialog.open(CategoryDialogComponent, {
+      height: '600px',
+      width: '390px',
+      data: this.cloth
+    });
+  }
 
 }

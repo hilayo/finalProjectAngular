@@ -2,7 +2,7 @@
          <app-catagories  class="catagories" fxLayout="row" fxflex="20%" (getSelected)="search($event)" ></app-catagories>
     <div fxflex="80%"  fxLayout="row" >
       <mat-card  fxflex="60%" class="container" fxLayout="row wrap">
-          <app-cloth style="margin: 10px;" fxFlex="30" *ngFor="let cloth of clothArray | async"  [cloth]="cloth" (deleteEM)="deleteCloth($event)" ></app-cloth>
+          <app-cloth style="margin: 10px;" fxFlex="30" *ngFor="let cloth of clothArray | async"  [cloth]="cloth" (deleteEM)="deleteCloth($event)" (changeStateEm)="changeState($event)"></app-cloth>
       </mat-card>
 
         <app-select-cloth style="width: 40%" ></app-select-cloth>
