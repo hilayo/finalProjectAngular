@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { tap,map } from 'rxjs/operators';
 import { imageProccessingOutput, imageProccessingMinOutput } from './image-proccessingOutput';
 @Injectable({
   providedIn: 'root'
@@ -29,9 +29,12 @@ export class ImageProccessingService {
     //   new imageProccessingMinOutput(result.color, result.tags, result.description)
     // ));
     const body = { "url": ImageBase64 };
-    return this.http.post<imageProccessingOutput>(this.url, body, httpOptions).pipe(map(result =>
+    return this.http.post<imageProccessingOutput>(this.url, body, httpOptions).pipe(
+      tap(result => console.log(result)),
+      map(result =>
       new imageProccessingMinOutput(result.color, result.tags, result.description)
-    ));
+    ),
+    tap(result => console.log(result)));
   }
 }
 
