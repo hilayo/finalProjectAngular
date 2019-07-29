@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap,map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { imageProccessingOutput, imageProccessingMinOutput } from './image-proccessingOutput';
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class ImageProccessingService {
   constructor(private http: HttpClient) { }
 
 
-  CallImageProccessingApi(ImageBase64: string): Observable<any> {
+  CallImageProccessingApi(url: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -24,18 +24,19 @@ export class ImageProccessingService {
         'Access-Control-Allow-Origin': "*"
       })
     };
-    // const body = { "url": "https://ae01.alicdn.com/kf/HTB1GUs2JpXXXXakXXXXq6xXFXXXz/2015-fall-sweaters-for-women-pull-long-sweater-woman-pullovers-knitwear-fashion-mori-girl-sueter-mujer.jpg" }
+    debugger;
+    const body = { "url":"https://market.marmelada.co.il/photos/1245135.png" }
+    //const body = { "url":" + this.url +" }
+    return this.http.post<imageProccessingOutput>(this.url, body, httpOptions).pipe(map(result =>
+      new imageProccessingMinOutput(result.color, result.tags, result.description)
+    ));
+
+    // const body = { "url": ImageBase64 };
     // return this.http.post<imageProccessingOutput>(this.url, body, httpOptions).pipe(map(result =>
     //   new imageProccessingMinOutput(result.color, result.tags, result.description)
     // ));
-    const body = { "url": ImageBase64 };
-    return this.http.post<imageProccessingOutput>(this.url, body, httpOptions).pipe(
-      tap(result => console.log(result)),
-      map(result =>
-      new imageProccessingMinOutput(result.color, result.tags, result.description)
-    ),
-    tap(result => console.log(result)));
+
+
   }
 }
-
 

@@ -1,14 +1,27 @@
 <div style="text-align:center">
   <br/>
   <div>
+    <form >
+      <mat-form-field class="url_space">
+        <input matInput placeholder="url of image" [(ngModel)]="url">
+
+
+      </mat-form-field>
+      <img id="snapshotBtn" (click)="callAPI();" style="height:30px; width:30px;" src="assets/images/saveImg.jpg" alt="save url"/>
+
+    </form>
+  </div>
+  <div>
+    <h2 class="color_text"> take a picture</h2>
     <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" ></webcam>
     <br/>
     <img id="snapshotBtn" (click)="triggerSnapshot();" style="height:50px; width:50px;" src="assets/images/cameraImg.jpg" alt="snapshot"/>
-    <button id="callAPI" (click)="callAPI();">call API</button>
+
   </div>
 </div>
 <div style="text-align:center" class="snapshot" *ngIf="webcamImage">
-  <h2>Save picture!  <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/> </h2>
+  <h2>Please Save picture!
+    <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/> </h2>
   <img [src]="webcamImage.imageAsDataUrl"/>
 </div>
 

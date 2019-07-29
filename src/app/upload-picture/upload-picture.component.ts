@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamUtil, WebcamInitError } from 'ngx-webcam';
 import { DbPicturesService } from '../shared/db-pictures.service';
 import { ImageProccessingService } from '../image-proccessing-core/image-proccessing.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryDialogComponent } from '../category-dialog/category-dialog.component';
-import { Cloth } from '../cloth/Cloth';
 import { Router } from '@angular/router';
 
 
@@ -17,10 +16,16 @@ import { Router } from '@angular/router';
 export class UploadPictureComponent implements OnInit {
 
   cloth:any;
+  @Input() url: string;
+
+  colorArray:string[]= new Array();
+  typeOfItemArray :string[]=new Array();
+
   constructor(private pictureService: DbPicturesService, private imgProccessService: ImageProccessingService,
     public dialog: MatDialog, private router: Router) {
 
   }
+
   ngOnInit(): void {
 
   }
@@ -51,11 +56,13 @@ export class UploadPictureComponent implements OnInit {
   //Please don't call this function in a loop my credit card will die and hunt you ,you been warned!!
   //call azure api Computer Vision
   public callAPI() {
-    debugger;
-    var result:any=this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data) => {
-
+    alert(this.url);
+       var result:any=this.imgProccessService.CallImageProccessingApi("https://www.fox.co.il/filestock/img/preview_2ac786f.jpg").subscribe((data) => {
       debugger;
+      console.log(data);
     })
+    // this.pictureService.addPictureByUrl(this.url,this.colorArray,this.typeOfItemArray)
+
   }
 
   openCatagories() {
