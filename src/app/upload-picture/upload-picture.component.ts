@@ -38,7 +38,6 @@ export class UploadPictureComponent implements OnInit {
     console.info("received webcam image", webcamImage);
     this.webcamImage = webcamImage;
   }
-
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
@@ -51,10 +50,13 @@ export class UploadPictureComponent implements OnInit {
 
   //Please don't call this function in a loop my credit card will die and hunt you ,you been warned!!
   //call azure api Computer Vision
-  // public callAPI() {
-  //   this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data) => {
-  //   })
-  // }
+  public callAPI() {
+    debugger;
+    var result:any=this.imgProccessService.CallImageProccessingApi(this.webcamImage.imageAsBase64.toString()).subscribe((data) => {
+
+      debugger;
+    })
+  }
 
   openCatagories() {
 
