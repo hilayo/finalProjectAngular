@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Cloth } from "../cloth/Cloth";
 import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
+import { SLoginService } from '../module-login/slogin.service';
 
 const UID = function () {
   // Math.random should be unique because of its seeding algorithm.
@@ -24,7 +25,8 @@ export class DbPicturesService {
   userId: string;
 
   private _clothsArray: BehaviorSubject<Cloth[]> = new BehaviorSubject(null);
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private slogin:SLoginService) {
+    this.userId=this.slogin.getUserId();
     this.loadInitialData();
   }
 
@@ -46,8 +48,8 @@ export class DbPicturesService {
       id: UID(),
       image: imageBase64,
       isImagebase64: true,
-      color: null,
-      typeOfItem: null,
+      color: new Array(),
+      typeOfItem: new Array(),
       clothStyle: new Array(),
       seasons: new Array(),
     };
