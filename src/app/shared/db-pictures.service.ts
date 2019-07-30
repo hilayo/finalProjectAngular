@@ -86,6 +86,23 @@ export class DbPicturesService {
 
   }
 
+  addPictureByImageData(imageBase64: string,colorArray:string[],typeOfItemArray:string[]):Cloth {
+    debugger;
+    const cloth: Cloth = {
+      userId: this.userId,
+      id: UID(),
+      image: imageBase64,
+      isImagebase64: true,
+      color: colorArray,
+      typeOfItem: typeOfItemArray,
+      clothStyle: new Array(),
+      seasons: new Array(),
+    };
+    this.saveCloth(cloth)
+    return cloth;
+
+  }
+
 
   saveCloth(cloth: Cloth) {
    return this.http.post(this.url, cloth).subscribe(data => {

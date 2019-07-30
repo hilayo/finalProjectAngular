@@ -5,6 +5,21 @@
     <br/>
     <div>
 
+<<<<<<< HEAD
+=======
+  </div>
+</div>
+
+<div style="text-align:center" class="snapshot" *ngIf="webcamImage">
+  <h2>Please Save picture!
+    <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/> </h2>
+  <img [src]="webcamImage.imageAsDataUrl"/>
+</div>
+
+<!--url image processing-->
+<div>
+  <form >
+>>>>>>> 3939dfcb06a221b4360c06de686a2b79002e9f65
     <mat-form-field class="url_space">
         <input #inputUrl matInput placeholder="url of image">
       </mat-form-field>

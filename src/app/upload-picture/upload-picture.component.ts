@@ -16,8 +16,13 @@ import { imageProccessingMinOutput } from '../image-proccessing-core/image-procc
 })
 export class UploadPictureComponent implements OnInit {
 
-  cloth:any;
+  cloth: any;
 
+<<<<<<< HEAD
+=======
+  colorArray: string[] = new Array();
+  typeOfItemArray: string[] = new Array();
+>>>>>>> 3939dfcb06a221b4360c06de686a2b79002e9f65
 
   constructor(private pictureService: DbPicturesService, private imgProccessService: ImageProccessingService,
     public dialog: MatDialog, private router: Router) {
@@ -48,7 +53,8 @@ export class UploadPictureComponent implements OnInit {
    }
 
     this.cloth =this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
-    this.openCatagories();
+    this.CallApiByImageData(this.webcamImage);
+    //this.openCatagories();
     // this.router.navigate(['homePage/closet']);
   }
 
@@ -69,8 +75,17 @@ export class UploadPictureComponent implements OnInit {
         this.pictureService.addPictureByUrl(url,[data.clothColor.toUpperCase()],data.clothCatgory.map(x=>x.toUpperCase()),clothStyle);
       console.log(data);
     })
-   //
+  }
+  public CallApiByImageData(image :WebcamImage) {
+    debugger
 
+    if (!image)
+      return;
+    var result: any = this.imgProccessService.CallImageProccessingByImageDataApi(image.imageAsBase64).subscribe((data: imageProccessingMinOutput) => {
+      debugger;
+      this.pictureService.addPictureByImageData(image.imageAsBase64, [data.clothColor.toUpperCase()], data.clothCatgory.map(x => x.toUpperCase()));
+      console.log(data);
+    });
   }
 
   openCatagories() {
