@@ -47,7 +47,6 @@ clothColor:string;
 clothCatgory:string[];
 
 constructor(color: Color, tags: Tag[], description: Description) {
-  debugger;
       this.color = { dominantColorForeground: color.dominantColorForeground,
         dominantColorBackground:color.dominantColorBackground,
         dominantColors: color.dominantColors,
