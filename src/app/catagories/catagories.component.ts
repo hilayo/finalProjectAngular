@@ -20,7 +20,7 @@ const COLOR_CATEGORY = [
 
 const CLOTH_STYLE_CATEGORY = [
   { key: 'ELEGANT', label: 'Elegant' },
-  { key: 'CASUALE', label: 'Casuale' },
+  { key: 'CASUAL DRESS', label: 'Casuale' },
   { key: 'WORK_CLOTH', label: 'Work ' },
   { key: 'EVENT', label: 'Event' },
   { key: 'NIGHT_CLOTH', label: 'Night  Cloth' },

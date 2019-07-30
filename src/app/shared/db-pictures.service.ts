@@ -67,19 +67,21 @@ export class DbPicturesService {
 
   }
 
-  addPictureByUrl(url: string,colorArray:string[],typeOfItemArray:string[]):Cloth {
-    debugger;
+  addPictureByUrl(url: string,colorArray:string[],typeOfItemArray:string[],clothStyleArray:string[]):Cloth {
+    colorArray = !!colorArray ? colorArray : new Array();
+    typeOfItemArray = !!typeOfItemArray ? typeOfItemArray :new Array();
+    clothStyleArray = !!clothStyleArray ? clothStyleArray : new Array();
     const cloth: Cloth = {
       userId: this.userId,
       id: UID(),
       image: url,
       isImagebase64: false,
-      color: colorArray,
+      color: colorArray ,
       typeOfItem: typeOfItemArray,
-      clothStyle: new Array(),
+      clothStyle: clothStyleArray,
       seasons: new Array(),
     };
-    this.saveCloth(cloth)
+    this.saveCloth(cloth);
     return cloth;
 
   }

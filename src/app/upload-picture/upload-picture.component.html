@@ -1,28 +1,36 @@
 <div style="text-align:center">
   <br/>
-
-  <div>
     <h2 class="color_text"> take a picture</h2>
     <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" ></webcam>
     <br/>
-    <img id="snapshotBtn" (click)="triggerSnapshot();" style="height:50px; width:50px;" src="assets/images/cameraImg.jpg" alt="snapshot"/>
+    <div>
 
-  </div>
-</div>
-<div style="text-align:center" class="snapshot" *ngIf="webcamImage">
-  <h2>Please Save picture!
-    <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/> </h2>
-  <img [src]="webcamImage.imageAsDataUrl"/>
-
-</div>
-<!--url image processing-->
-<div>
-  <form >
     <mat-form-field class="url_space">
+        <input #inputUrl matInput placeholder="url of image">
+      </mat-form-field>
+    <img id="snapshotBtn" (click)="triggerSnapshot();" style="height:50px; width:50px;" src="assets/images/cameraImg.jpg" alt="snapshot"/>
+    <img id="savepic" (click)="savePicture(inputUrl.value);" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/>
+<!-- </div> -->
+<!-- <div style="text-align:center" class="snapshot" *ngIf="webcamImage"> -->
+  <!-- <h2>Please Save picture! -->
+
+    <!-- <mat-form-field class="url_space">
       <input #inputUrl matInput placeholder="url of image">
-    </mat-form-field>
-    <img id="snapshotBtn" (click)="callAPI(inputUrl.value);" style="height:30px; width:30px;" src="assets/images/saveImg.jpg" alt="save url"/>
-  </form>
-  <img [src]="inputUrl.value">
+    </mat-form-field> -->
 </div>
+  <img *ngIf="!inputUrl.value && webcamImage" [src]="webcamImage.imageAsDataUrl"/>
+  <img *ngIf="inputUrl.value" [src]="inputUrl.value">
+</div>
+<!-- </div> -->
+  <!--url image processing-->
+  <!-- <div>
+    <form >
+      <mat-form-field class="url_space">
+        <input #inputUrl matInput placeholder="url of image">
+      </mat-form-field> -->
+      <!-- <img id="snapshotBtn" (click)="callAPI(inputUrl.value);" style="height:30px; width:30px;" src="assets/images/saveImg.jpg" alt="save url"/> -->
+    <!-- </form>
+    <img [src]="inputUrl.value">
+  </div> -->
+
 

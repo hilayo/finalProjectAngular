@@ -177,16 +177,7 @@
     },
     {
       "userId": "Dr5Ozw6",
-      "id": "_mrd6afu5g",
-      "isImagebase64": false,
-      "color": [],
-      "typeOfItem": [],
-      "clothStyle": [],
-      "seasons": []
-    },
-    {
-      "userId": "Dr5Ozw6",
-      "id": "_rgo99q0w1",
+      "id": "_dqcniu1om",
       "image": "https://sc02.alicdn.com/kf/HTB1Je9EmrZnBKNjSZFGq6zt3FXaV/2017-latest-design-women-hand-made-sweater.jpg",
       "isImagebase64": false,
       "color": [
@@ -195,7 +186,25 @@
       "typeOfItem": [
         "SWEATER"
       ],
-      "clothStyle": [],
+      "clothStyle": [
+        "CASUAL DRESS"
+      ],
+      "seasons": []
+    },
+    {
+      "userId": "Dr5Ozw6",
+      "id": "_jfcluk304",
+      "image": "https://sc02.alicdn.com/kf/HTB1Je9EmrZnBKNjSZFGq6zt3FXaV/2017-latest-design-women-hand-made-sweater.jpg",
+      "isImagebase64": false,
+      "color": [
+        "GREY"
+      ],
+      "typeOfItem": [
+        "SWEATER"
+      ],
+      "clothStyle": [
+        "CASUAL DRESS"
+      ],
       "seasons": []
     }
   ]
