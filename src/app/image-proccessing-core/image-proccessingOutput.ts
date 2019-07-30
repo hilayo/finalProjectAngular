@@ -54,7 +54,6 @@ constructor(color: Color, tags: Tag[], description: Description) {
       this.tags=tags;
       this.description=description;
       this.clothColor = this.color.dominantColorForeground;
-      debugger;
       this.clothCatgory=this.getClothCatgory(this.tags,this.description);
 
   }
@@ -96,5 +95,5 @@ constructor(color: Color, tags: Tag[], description: Description) {
 export interface ColorMin {
 dominantColorForeground: string;
 dominantColorBackground: string;
-dominantColors:          string[];
+dominantColors: string[];
 }
