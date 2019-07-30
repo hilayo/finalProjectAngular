@@ -16,10 +16,10 @@ import { imageProccessingMinOutput } from '../image-proccessing-core/image-procc
 })
 export class UploadPictureComponent implements OnInit {
 
-  cloth:any;
+  cloth: any;
 
-  colorArray:string[]= new Array();
-  typeOfItemArray :string[]=new Array();
+  colorArray: string[] = new Array();
+  typeOfItemArray: string[] = new Array();
 
   constructor(private pictureService: DbPicturesService, private imgProccessService: ImageProccessingService,
     public dialog: MatDialog, private router: Router) {
@@ -44,26 +44,37 @@ export class UploadPictureComponent implements OnInit {
     return this.trigger.asObservable();
   }
   public savePicture() {
-
-    this.cloth =this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
-    this.openCatagories();
+    debugger;
+    
+    this.cloth = this.pictureService.addPicture(this.webcamImage.imageAsBase64.toString());
+    this.CallApiByImageData(this.webcamImage);
+    //this.openCatagories();
     // this.router.navigate(['homePage/closet']);
   }
 
   //Please don't call this function in a loop my credit card will die and hunt you ,you been warned!!
   //call azure api Computer Vision
-  public callAPI(url:string) {
+  public callAPI(url: string) {
+    debugger;
     //THIS URL WORK WITH THE API:)
     //https://sc02.alicdn.com/kf/HTB1Je9EmrZnBKNjSZFGq6zt3FXaV/2017-latest-design-women-hand-made-sweater.jpg
-    if(!url)
-         return;
-       var result:any=this.imgProccessService.CallImageProccessingApi(url).subscribe((data:imageProccessingMinOutput) => {
-         debugger;
-        this.pictureService.addPictureByUrl(url,[data.clothColor.toUpperCase()],data.clothCatgory.map(x=>x.toUpperCase()));
+    if (!url)
+      return;
+    var result: any = this.imgProccessService.CallImageProccessingApi(url).subscribe((data: imageProccessingMinOutput) => {
+      this.pictureService.addPictureByUrl(url, [data.clothColor.toUpperCase()], data.clothCatgory.map(x => x.toUpperCase()));
       console.log(data);
     })
-   //
-
+  }
+  public CallApiByImageData(image :WebcamImage) {
+    debugger
+    
+    if (!image)
+      return;
+    var result: any = this.imgProccessService.CallImageProccessingByImageDataApi(image.imageAsBase64).subscribe((data: imageProccessingMinOutput) => {
+      debugger;
+      this.pictureService.addPictureByImageData(image.imageAsBase64, [data.clothColor.toUpperCase()], data.clothCatgory.map(x => x.toUpperCase()));
+      console.log(data);
+    });
   }
 
   openCatagories() {

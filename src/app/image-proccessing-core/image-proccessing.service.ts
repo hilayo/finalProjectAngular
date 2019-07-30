@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { imageProccessingOutput, imageProccessingMinOutput } from './image-proccessingOutput';
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { imageProccessingOutput, imageProccessingMinOutput } from './image-procc
 export class ImageProccessingService {
   private url: string = "https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/analyze?visualFeatures=Color,Tags,Description&language=en";
 
- private apiKey: string = "ba8442ccac3941e1857ae6360c1ed6cf";
+  private apiKey: string = "ba8442ccac3941e1857ae6360c1ed6cf";
   constructor(private http: HttpClient) { }
 
 
@@ -23,11 +23,31 @@ export class ImageProccessingService {
         'Access-Control-Allow-Origin': "*"
       })
     };
-   const body = { "url": imageUrl }
+   
+    const body = { "url": imageUrl }
     return this.http.post<imageProccessingOutput>(this.url, body, httpOptions).pipe(map(result =>
       new imageProccessingMinOutput(result.color, result.tags, result.description)
-   ));
+    ));
     //const body = { "url": img };
+  }
+
+  CallImageProccessingByImageDataApi(imageData): Observable<any> {
+    debugger;
+
+    const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/octet-stream',
+          'Ocp-Apim-Subscription-Key': this.apiKey,
+          'Access-Control-Allow-Origin': "*"
+        })
+      };
+    var byteArray = this._base64ToArrayBuffer(imageData); 
+
+    return this.http.post<imageProccessingOutput>(this.url,byteArray,httpOptions).pipe(
+       tap(x => console.log(x)),
+       map(result =>
+          new imageProccessingMinOutput(result.color, result.tags, result.description)
+       ));
   }
 
 
@@ -50,27 +70,35 @@ export class ImageProccessingService {
   // }
 
 
-//  dataURItoBlob(dataURI) {
-//   // convert base64/URLEncoded data component to raw binary data held in a string
-//   var byteString;
-//   if (dataURI.split(',')[0].indexOf('base64') >= 0)
-//       byteString = atob(dataURI.split(',')[1]);
-//   else
-//       byteString = unescape(dataURI.split(',')[1]);
+  //  dataURItoBlob(dataURI) {
+  //   // convert base64/URLEncoded data component to raw binary data held in a string
+  //   var byteString;
+  //   if (dataURI.split(',')[0].indexOf('base64') >= 0)
+  //       byteString = atob(dataURI.split(',')[1]);
+  //   else
+  //       byteString = unescape(dataURI.split(',')[1]);
 
-//   // separate out the mime component
-//   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+  //   // separate out the mime component
+  //   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
 
-//   // write the bytes of the string to a typed array
-//   var ia = new Uint8Array(byteString.length);
-//   for (var i = 0; i < byteString.length; i++) {
-//       ia[i] = byteString.charCodeAt(i);
-//   }
+  //   // write the bytes of the string to a typed array
+  //   var ia = new Uint8Array(byteString.length);
+  //   for (var i = 0; i < byteString.length; i++) {
+  //       ia[i] = byteString.charCodeAt(i);
+  //   }
 
-//   return new Blob([ia], {type:mimeString});
-// }
+  //   return new Blob([ia], {type:mimeString});
+  // }
 
-
+  public _base64ToArrayBuffer(base64) {
+    var binary_string = window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+      bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
 
 }
 

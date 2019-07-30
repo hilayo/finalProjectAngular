@@ -9,12 +9,13 @@
 
   </div>
 </div>
+<span>
 <div style="text-align:center" class="snapshot" *ngIf="webcamImage">
   <h2>Please Save picture!
     <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/> </h2>
   <img [src]="webcamImage.imageAsDataUrl"/>
-
 </div>
+</span>
 <!--url image processing-->
 <div>
   <form >
