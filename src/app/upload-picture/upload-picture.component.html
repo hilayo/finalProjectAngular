@@ -12,7 +12,8 @@
 
 <div style="text-align:center" class="snapshot" *ngIf="webcamImage">
   <h2>Please Save picture!
-    <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/> </h2>
+   <!-- <img id="savepic" (click)="savePicture();" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/>-->
+  </h2>
   <img [src]="webcamImage.imageAsDataUrl"/>
 </div>
 
@@ -24,7 +25,7 @@
         <input #inputUrl matInput placeholder="url of image">
       </mat-form-field>
     <img id="snapshotBtn" (click)="triggerSnapshot();" style="height:50px; width:50px;" src="assets/images/cameraImg.jpg" alt="snapshot"/>
-    <img id="savepic" (click)="savePicture(inputUrl.value);" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/>
+ <!--   <img id="savepic" (click)="savePicture(inputUrl.value);" style="height:50px; width:50px;" src="assets/images/saveImg.jpg" alt="save"/>-->
 <!-- </div> -->
 <!-- <div style="text-align:center" class="snapshot" *ngIf="webcamImage"> -->
   <!-- <h2>Please Save picture! -->
